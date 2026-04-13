@@ -1,28 +1,25 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Certificate Verification</title>
+    <title>Certificate Verification</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <div class="certificate-box">
-            <div class="header-logo">
-                <img src="logo.png" alt="Company Logo">
-            </div>
-            
-            <h1>Official Certificate</h1>
-            <p>Safety and Industrial Trainings</p>
+    <div class="main-container">
+        <div class="cert-card">
+            <img src="logo.png" class="top-logo" alt="Logo">
+            <h2>Official Certificate</h2>
+            <p class="sub-text">Safety and Industrial Trainings</p>
 
-            <div class="user-info">
-                <div class="photo-container">
-                    <img id="userPhoto" src="logo.png" alt="User Photo">
+            <div class="content-flex">
+                <div class="user-img-box">
+                    <img id="userPhoto" src="logo.png" alt="User">
                 </div>
-                <div class="details">
-                    <p><strong>Name:</strong> <span id="name">Verifying...</span></p>
+                <div class="user-details">
+                    <p><strong>Name:</strong> <span id="name">Loading...</span></p>
                     <p><strong>Enrollment No:</strong> <span id="enrollNo">---</span></p>
                     <p><strong>Iqama/Passport:</strong> <span id="iqama">---</span></p>
                     <p><strong>Course:</strong> <span id="course">---</span></p>
@@ -31,37 +28,41 @@
                 </div>
             </div>
 
-            <div class="verified-stamp">
-                <img src="verified.png" alt="Verified Seal">
-            </div>
+            <img src="verified.png" class="verified-seal" alt="Verified">
         </div>
 
-        <div class="slider">
-            <div class="slide-track">
+        <div class="logo-marquee">
+            <div class="marquee-content">
                 <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
+                <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
                 <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
+                <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
             </div>
         </div>
     </div>
 
     <script>
-        // === ডাটাবেস অংশ ===
-        // এখানেই আপনি বারবার নতুন মানুষের তথ্য যুক্ত করবেন
         const students = {
+            "121086": {
+                name: "MD MAHIBULLAH",
+                iqama: "258XXXXXXX",
+                course: "SAFETY SPECIALIST / WPR",
+                issue: "13-04-2026",
+                expiry: "12-04-2027",
+                photo: "mahibullah.jpg" 
+            },
             "258-KD-SF-26": {
                 name: "KAMRUL ISLAM",
                 iqama: "2589913066",
                 course: "SCAFFOLDING ERECTION AND DISMANTLING",
                 issue: "01-02-2026",
                 expiry: "31-01-2027",
-                photo: "kamrul.jpg" // আপনাকে GitHub-এ ఈ নামে ছবি আপলোড করতে হবে
-            },
-            // এখানে নতুন ব্যক্তির তথ্য যোগ করুন, যেমন:
-            // "121086": { name: "MD MAHIBULLAH", ..., photo: "mahibullah.jpg" },
+                photo: "kamrul.jpg"
+            }
         };
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
 
         if (id && students[id]) {
             document.getElementById('name').innerText = students[id].name;
@@ -70,10 +71,10 @@
             document.getElementById('course').innerText = students[id].course;
             document.getElementById('issueDate').innerText = students[id].issue;
             document.getElementById('expiryDate').innerText = students[id].expiry;
+            // ছবি থাকলে ছবি দেখাবে, না থাকলে লোগো দেখাবে
             document.getElementById('userPhoto').src = students[id].photo;
         } else {
-            // যদি আইডি না থাকে বা ভুল হয়
-            document.body.innerHTML = "<h1>Invalid Certificate ID</h1>";
+            document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:50px;'>Invalid ID! Please use correct link.</h1>";
         }
     </script>
 </body>
