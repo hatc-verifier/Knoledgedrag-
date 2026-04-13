@@ -3,87 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Verification</title>
+    <title>Professional Verification System</title>
     <style>
-        body { margin: 0; padding: 20px 0; display: flex; justify-content: center; background: #2c3e50; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { margin: 0; padding: 20px 0; display: flex; justify-content: center; background: #1a1a1a; font-family: Arial, sans-serif; }
 
-        /* মেইন কন্টেইনার যা সব ডিভাইসে সমান থাকবে */
-        .cert-wrapper {
+        /* সার্টিফিকেটের মূল কন্টেইনার */
+        .cert-container {
             position: relative;
-            width: 100%;
-            max-width: 800px; /* সার্টিফিকেটের চওড়া */
-            aspect-ratio: 1.4 / 1; /* টেমপ্লেটের অনুপাত */
-            background-image: url('40799.png');
-            background-size: 100% 100%;
+            width: 95vw; /* মোবাইলে চওড়া ঠিক রাখবে */
+            max-width: 800px;
+            aspect-ratio: 1.41 / 1; /* টেমপ্লেটের সঠিক অনুপাত */
+            background-image: url('template.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* তথ্যগুলোর কমন স্টাইল */
-        .data-overlay { position: absolute; font-weight: bold; color: #1a1a1a; font-size: 1.8vw; }
+        /* তথ্যগুলোর পজিশন (শতকরা হিসেবে দেওয়া যাতে নড়াচড়া না করে) */
+        .info { position: absolute; font-weight: bold; color: #111; }
 
         /* ইউজারের ছবি */
         #u_photo {
             position: absolute;
-            top: 22%; left: 42.5%;
+            top: 22.5%; left: 42.5%;
             width: 15%; height: 23%;
             object-fit: cover;
             border: 2px solid #fff;
         }
 
-        /* এনরোলমেন্ট নম্বর */
-        #u_enroll { top: 48%; left: 0; width: 100%; text-align: center; font-size: 1.5vw; color: #005a87; }
+        #u_enroll { top: 48%; left: 0; width: 100%; text-align: center; font-size: 1.8vw; color: #005a87; }
+        #u_name { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3.5vw; color: #000; text-transform: uppercase; }
 
-        /* বড় নাম (মাঝখানে) */
-        #u_name { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3vw; color: #000; text-transform: uppercase; }
-
-        /* তথ্য সাজানোর গ্রিড (বাম ও ডান পাশ) */
-        .info-grid {
+        /* গ্রিড স্টাইল তথ্য (কোর্স, ইকামা ইত্যাদি) */
+        .details-grid {
             position: absolute;
             top: 66%; left: 8%; width: 84%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5vw;
         }
+        .item { border-bottom: 1px solid #ddd; padding-bottom: 2px; }
+        .lbl { font-size: 1.1vw; color: #666; display: block; }
+        .val { font-size: 1.5vw; color: #222; }
 
-        .label { font-size: 1vw; color: #7f8c8d; display: block; }
-        .val { font-size: 1.4vw; color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 2px; }
+        #u_name_small { top: 76.8%; left: 0; width: 100%; text-align: center; font-size: 1.8vw; }
 
-        /* নিচে প্যারাগ্রাফের ভেতর নাম */
-        #u_name_small { position: absolute; top: 76.5%; left: 0; width: 100%; text-align: center; font-size: 1.6vw; color: #000; }
-
-        /* ভিউপোর্ট ছোট হলে টেক্সট সাইজ ঠিক রাখার জন্য */
-        @media (min-width: 801px) {
-            .data-overlay, .val { font-size: 14px; }
-            #u_name { font-size: 28px; }
+        /* বড় স্ক্রিনের জন্য ফন্ট সাইজ ফিক্স করা */
+        @media (min-width: 800px) {
             #u_enroll { font-size: 14px; }
+            #u_name { font-size: 28px; }
+            .lbl { font-size: 9px; }
+            .val { font-size: 13px; }
             #u_name_small { font-size: 14px; }
-            .label { font-size: 10px; }
         }
     </style>
 </head>
 <body>
 
-<div class="cert-wrapper">
+<div class="cert-container">
     <img id="u_photo" src="" alt="">
-    <div id="u_enroll" class="data-overlay"></div>
-    <div id="u_name" class="data-overlay"></div>
+    <div id="u_enroll" class="info"></div>
+    <div id="u_name" class="info"></div>
 
-    <div class="info-grid">
-        <div>
-            <span class="label">COURSE:</span>
+    <div class="details-grid">
+        <div class="item">
+            <span class="lbl">NAME:</span>
+            <div class="val" id="disp_name">---</div>
+        </div>
+        <div class="item" style="text-align: right;">
+            <span class="lbl">IQAMA/PASSPORT:</span>
+            <div class="val" id="u_iqama">---</div>
+        </div>
+        <div class="item">
+            <span class="lbl">COURSE:</span>
             <div class="val" id="u_course">---</div>
-            <span class="label" style="margin-top:5px;">ISSUE DATE:</span>
+        </div>
+        <div class="item" style="text-align: right;">
+            <span class="lbl">EXPIRY DATE:</span>
+            <div class="val" id="u_expiry">---</div>
+        </div>
+        <div class="item">
+            <span class="lbl">ISSUE DATE:</span>
             <div class="val" id="u_issue">---</div>
         </div>
-        <div style="text-align: right;">
-            <span class="label">IQAMA/PASSPORT:</span>
-            <div class="val" id="u_iqama">---</div>
-            <span class="label" style="margin-top:5px;">EXPIRY DATE:</span>
-            <div class="val" id="u_expiry">---</div>
+        <div class="item" style="text-align: right;">
+            <span class="lbl">BRANCH:</span>
+            <div class="val" id="u_branch">---</div>
         </div>
     </div>
     
-    <div id="u_name_small" class="data-overlay"></div>
+    <div id="u_name_small" class="info"></div>
 </div>
 
 <script>
@@ -96,15 +106,17 @@
             if(id && data[id]){
                 const s = data[id];
                 document.getElementById('u_name').innerText = s.name || "";
+                document.getElementById('disp_name').innerText = s.name || "";
                 document.getElementById('u_name_small').innerText = s.name || "";
                 document.getElementById('u_enroll').innerText = "Enrollment No: " + id;
                 document.getElementById('u_course').innerText = s.course || "";
                 document.getElementById('u_iqama').innerText = s.iqama || "";
                 document.getElementById('u_issue').innerText = s.issue || "";
                 document.getElementById('u_expiry').innerText = s.expiry || "";
+                document.getElementById('u_branch').innerText = s.branch || "Al Jubail, KSA";
                 if(s.photo) document.getElementById('u_photo').src = s.photo;
             } else {
-                alert("ID not found!");
+                alert("Invalid ID!");
             }
         });
 </script>
