@@ -43,25 +43,44 @@
 
         .cert-container img { width: 100%; display: block; }
 
-                /* আপনার দেওয়া স্ক্রিনশট অনুযায়ী ডাউনলোড বাটন */
+                    /* আপনার প্রথম স্ক্রিনশট অনুযায়ী ডাউনলোড বাটন ও মোটা অ্যারো চিহ্ন */
         .download-btn {
             position: absolute;
-            top: 20px; /* সার্টিফিকেটের টপ থেকে ২০ পিক্সেল নিচে */
-            right: -25px; /* সার্টিফিকেটের ডান কিনারা থেকে বাইরে ভেসে থাকবে */
-            background-color: white; /* সাদা বৃত্তাকার ব্যাকগ্রাউন্ড */
-            color: #1a4a5a; /* আইকনের রঙ আপনার দেওয়া নীল */
-            width: 50px; /* বৃত্তের সাইজ */
-            height: 50px; /* বৃত্তের সাইজ */
-            border-radius: 50%; /* বৃত্তাকার করার জন্য */
+            top: 22px; /* সার্টিফিকেটের নীল বর্ডারের ঠিক মাঝামাঝি */
+            right: 18px; /* ডানদিকের কোণা থেকে নিখুঁত দূরত্ব */
+            background-color: white; 
+            color: #2c5f78; /* স্ক্রিনশটের মতো নীল রঙের অ্যারো */
+            width: 46px; 
+            height: 46px; 
+            border-radius: 50%; 
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 24px; /* আইকনের সাইজ */
-            z-index: 30; /* সার্টিফিকেটের ওপরে থাকবে */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* হালকা শ্যাডো */
+            z-index: 100; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             transition: 0.3s;
         }
+
+        /* অ্যারো চিহ্নটিকে মোটা এবং আপনার দেওয়া ছবির মতো করার জন্য */
+        .download-btn i {
+            font-size: 22px; 
+            font-weight: 900; /* অ্যারোটি মোটা দেখানোর জন্য */
+        }
+
+        /* মোবাইলের জন্য পজিশন */
+        @media (max-width: 600px) {
+            .download-btn {
+                top: 12px; 
+                right: 8px; 
+                width: 40px;
+                height: 40px;
+            }
+            .download-btn i {
+                font-size: 18px;
+            }
+        }
+
 
         /* মোবাইলের জন্য বাটনটি যাতে স্ক্রিনের বাইরে না যায় */
         @media (max-width: 600px) {
