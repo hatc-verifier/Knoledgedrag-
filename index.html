@@ -3,53 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Verification</title>
+    <title>Verification System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="cert-card">
-            <img src="logo.png" class="top-logo" alt="Logo">
-            <h2>Official Certificate</h2>
-            <p class="sub-text">Safety and Industrial Trainings</p>
-
-            <div class="content-flex">
-                <div class="user-img-box">
-                    <img id="userPhoto" src="logo.png" alt="User">
+    <div class="overlay">
+        <div class="certificate-container">
+            <div class="card">
+                <div class="card-header">
+                    <img src="logo.png" alt="Logo" class="main-logo">
+                    <div class="header-text">
+                        <h3>Knowledge Drag</h3>
+                        <p>Safety and Industrial Trainings</p>
+                    </div>
                 </div>
-                <div class="user-details">
-                    <p><strong>Name:</strong> <span id="name">Loading...</span></p>
-                    <p><strong>Enrollment No:</strong> <span id="enrollNo">---</span></p>
-                    <p><strong>Iqama/Passport:</strong> <span id="iqama">---</span></p>
-                    <p><strong>Course:</strong> <span id="course">---</span></p>
-                    <p><strong>Issue Date:</strong> <span id="issueDate">---</span></p>
-                    <p><strong>Expiry Date:</strong> <span id="expiryDate">---</span></p>
+
+                <h2 class="cert-title">Official Certificate</h2>
+
+                <div class="card-body">
+                    <div class="user-image">
+                        <img id="userPhoto" src="logo.png" alt="User Photo">
+                    </div>
+                    <div class="user-info">
+                        <p><strong>Name:</strong> <span id="name">...</span></p>
+                        <p><strong>Enrollment No:</strong> <span id="enrollNo">...</span></p>
+                        <p><strong>Iqama/Passport:</strong> <span id="iqama">...</span></p>
+                        <p><strong>Course:</strong> <span id="course">...</span></p>
+                        <p><strong>Issue Date:</strong> <span id="issueDate">...</span></p>
+                        <p><strong>Expiry Date:</strong> <span id="expiryDate">...</span></p>
+                    </div>
                 </div>
-            </div>
 
-            <img src="verified.png" class="verified-seal" alt="Verified">
-        </div>
-
-        <div class="logo-marquee">
-            <div class="marquee-content">
-                <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
-                <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
-                <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
-                <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
+                <div class="footer-area">
+                    <img src="verified.png" alt="Verified" class="seal">
+                </div>
             </div>
         </div>
     </div>
 
+    <div class="footer-slider">
+        <div class="slide-track">
+            <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
+            <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
+            <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
+        </div>
+    </div>
+
     <script>
+        // === ডাটা ফাইল (এখানেই আপনি বারবার নতুন নাম যোগ করবেন) ===
         const students = {
             "121086": {
                 name: "MD MAHIBULLAH",
-                iqama: "258XXXXXXX",
+                iqama: "2587744110",
                 course: "SAFETY SPECIALIST / WPR",
                 issue: "13-04-2026",
                 expiry: "12-04-2027",
-                photo: "mahibullah.jpg" 
+                photo: "mahibullah.jpg"
             },
             "258-KD-SF-26": {
                 name: "KAMRUL ISLAM",
@@ -61,8 +71,8 @@
             }
         };
 
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
 
         if (id && students[id]) {
             document.getElementById('name').innerText = students[id].name;
@@ -71,10 +81,9 @@
             document.getElementById('course').innerText = students[id].course;
             document.getElementById('issueDate').innerText = students[id].issue;
             document.getElementById('expiryDate').innerText = students[id].expiry;
-            // ছবি থাকলে ছবি দেখাবে, না থাকলে লোগো দেখাবে
             document.getElementById('userPhoto').src = students[id].photo;
         } else {
-            document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:50px;'>Invalid ID! Please use correct link.</h1>";
+            document.body.innerHTML = "<h1 style='color:white; text-align:center;'>ID খুঁজে পাওয়া যায়নি! সঠিক লিঙ্ক ব্যবহার করুন।</h1>";
         }
     </script>
 </body>
