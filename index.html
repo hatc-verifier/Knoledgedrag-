@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification System | Knowledge Drag</title>
+    <title>Verification Portal - Knowledge Drag</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,11 +14,11 @@
             color: #333;
         }
 
-        /* ১. ব্যাকগ্রাউন্ড এরিয়া (মোবাইলের ৫৫% জুড়ে থাকবে) */
+        /* ১. ব্যাকগ্রাউন্ড এরিয়া (সংশোধিত Path: .jpeg) */
         .hero-section {
             width: 100%;
-            height: 55vh; /* আপনার চাহিদা অনুযায়ী ৫৫% */
-            background: url('background.jpg') no-repeat center center;
+            height: 55vh; /* মোবাইলের ৫৫% */
+            background: url('background.jpeg') no-repeat center center; /* আপনার ফাইল অনুযায়ী .jpeg দেওয়া হলো */
             background-size: cover;
             position: relative;
             display: flex;
@@ -31,7 +31,7 @@
             width: 90%;
             max-width: 600px;
             background: white;
-            position: relative; /* ডাউনলোড বাটনের জন্য */
+            position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-radius: 5px;
             overflow: hidden;
@@ -43,7 +43,7 @@
             display: block;
         }
 
-        /* ৩. ডাউনলোড বাটন (ডান পাশে উপরে কোনায়) */
+        /* ৩. ডাউনলোড বাটন */
         .download-btn {
             position: absolute;
             top: 10px;
@@ -63,7 +63,7 @@
 
         .download-btn:hover { background: #003d5c; }
 
-        /* ৪. লোগো স্লাইডার */
+        /* ৪. লোগো স্লাইডার (সংশোধিত ফাইলের নাম অনুযায়ী) */
         .slider-box {
             width: 100%;
             background: white;
@@ -74,7 +74,7 @@
 
         .track {
             display: flex;
-            width: calc(120px * 16);
+            width: calc(120px * 20); /* আরও লোগোর জন্য উইডথ বাড়ানো হলো */
             animation: scroll 20s linear infinite;
         }
 
@@ -86,12 +86,12 @@
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-120px * 8)); }
+            100% { transform: translateX(calc(-120px * 10)); } /* ১০টি লোগোর জন্য */
         }
 
-        /* ৫. নীল কালারের ইনফো সেকশন (আপনার স্ক্রিনশট অনুযায়ী) */
+        /* ৫. নীল কালারের তথ্য সেকশন */
         .info-footer {
-            background-color: #1a4a5a; /* স্ক্রিনশটের গাঢ় নীল রঙ */
+            background-color: #1a4a5a;
             color: white;
             padding: 40px 20px;
         }
@@ -152,16 +152,26 @@
 
     <div class="slider-box">
         <div class="track">
-            <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
-            <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png"> <img src="tavto.png">
-            <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
-            <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png"> <img src="tavto.png">
+            <img src="iso.png"> 
+            <img src="saso.png"> 
+            <img src="anci.png"> <img src="sabic.png"> 
+            <img src="oeha.png"> <img src="saac.png"> 
+            <img src="iosh.png"> 
+            <img src="tavto.png">
+            <img src="iso.png"> 
+            <img src="saso.png"> 
+            <img src="anci.png"> 
+            <img src="sabic.png"> 
+            <img src="oeha.png"> 
+            <img src="saac.png"> 
+            <img src="iosh.png"> 
+            <img src="tavto.png">
         </div>
     </div>
 
     <div class="info-footer">
         <div style="max-width: 600px; margin: auto;">
-            <img src="logo.png" style="width: 150px; margin-bottom: 20px;" alt="Knowledge Drag Logo">
+            <div style="font-weight: bold; font-size: 20px; margin-bottom: 10px; color: #fff;">Knowledge Drag</div>
             
             <p>Leadership in Occupational Safety and Certified Trainings. We provide world-class industrial education.</p>
 
