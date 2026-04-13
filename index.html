@@ -3,165 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Drag Verification</title>
+    <title>Official Verification - Knowledge Drag</title>
     <style>
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Segoe UI', Arial, sans-serif; background: #fff; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; }
 
-        /* ব্যাকগ্রাউন্ড ছবি ৩০% জায়গা নেবে */
+        /* হিরো সেকশন */
         .hero-bg {
-            background: url('background.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg') no-repeat center center;
             background-size: cover;
-            height: 30vh; /* আপনার অনুরোধ অনুযায়ী ৩০% */
+            height: 35vh;
             width: 100%;
         }
 
-        /* সার্টিফিকেট কার্ডের মূল অংশ */
         .wrapper {
-            margin-top: -100px; /* কার্ডটিকে ছবির ওপর একটু তুলে আনা */
+            margin-top: -120px;
             display: flex;
             justify-content: center;
-            padding: 10px;
+            padding: 15px;
+            margin-bottom: 50px;
         }
 
         .cert-box {
             background: white;
             width: 100%;
-            max-width: 600px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            text-align: center;
+            max-width: 650px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border-top: 5px solid #005a87;
         }
 
-        /* নমুনার মতো হেডার */
-        .top-bar {
+        /* হেডার ডিজাইন */
+        .top-header {
             background: #005a87;
             color: white;
-            padding: 10px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: -20px -20px 20px -20px;
         }
-        .top-bar p { margin: 0; font-size: 10px; }
 
-        .user-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
-        .user-header img { width: 100px; height: 120px; border: 2px solid #005a87; object-fit: cover; }
+        .user-profile {
+            text-align: center;
+            padding: 20px;
+        }
+        .user-profile img {
+            width: 110px;
+            height: 130px;
+            border: 3px solid #eee;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
 
-        /* তথ্যগুলো দুই পাশে সাজানো */
-        .info-container {
+        /* ইনফরমেশন গ্রিড */
+        .info-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 0 30px;
             text-align: left;
+            font-size: 13px;
+        }
+        .info-item { border-bottom: 1px solid #eee; padding: 5px 0; }
+        .label { color: #777; font-weight: bold; display: block; font-size: 10px; text-transform: uppercase; }
+        .value { color: #333; font-weight: 600; font-size: 14px; }
+
+        /* ভেরিফাইড সিল */
+        .seal-area { text-align: center; padding: 20px; }
+        .seal-area img { width: 80px; }
+
+        /* ফুটার টেক্সট */
+        .footer-desc {
+            background: #f9f9f9;
+            padding: 20px;
             font-size: 11px;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .info-container p { margin: 3px 0; border-bottom: 1px solid #f0f0f0; }
-
-        /* নমুনার সেই অতিরিক্ত টেক্সট */
-        .cert-footer-text {
-            font-size: 10px;
             color: #555;
-            margin-top: 20px;
-            line-height: 1.4;
-            padding: 0 10px;
-        }
-
-        .verified-seal { width: 60px; margin: 15px 0; }
-
-        /* লোগো স্লাইডার (নিচে সাদা অংশে) */
-        .marquee-footer {
-            height: 100px;
-            background: white;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
+            line-height: 1.6;
+            text-align: center;
             border-top: 1px solid #eee;
         }
-        .track { display: flex; width: 2000px; animation: slide 20s linear infinite; }
-        .track img { width: 70px; margin: 0 25px; }
-        @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-1000px); } }
+
+        /* লোগো স্লাইডার */
+        .logo-slider {
+            background: white;
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .slide-track {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+        }
+        .slide-track img { height: 40px; margin: 0 30px; opacity: 0.7; }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero-bg"></div>
+<div class="hero-bg"></div>
 
-    <div class="wrapper">
-        <div class="cert-box">
-            <div class="top-bar">
-                <div style="text-align:left;">
-                    <img src="logo.png" style="width:30px; filter:brightness(0) invert(1);">
-                </div>
-                <div>
-                    <strong style="font-size:14px;">Official Certificate</strong><br>
-                    <p>Safety and Industrial Trainings</p>
-                </div>
-                <div style="text-align:right;">
-                    <p>شهادة رسمية</p>
-                </div>
+<div class="wrapper">
+    <div class="cert-box">
+        <div class="top-header">
+            <img src="logo.png" style="height: 35px; filter: brightness(0) invert(1);">
+            <div style="text-align: center;">
+                <h2 style="margin:0; font-size: 18px;">Official Certificate</h2>
+                <small>Safety and Industrial Trainings</small>
             </div>
+            <div style="text-align: right; font-size: 12px;">شهادة رسمية</div>
+        </div>
 
-            <div class="user-header">
-                <img id="userPhoto" src="logo.png">
-                <p style="font-size:11px; margin-top:5px;">Enrollment No: <span id="enrollNo" style="font-weight:bold;">...</span></p>
+        <div class="user-profile">
+            <img id="u_photo" src="logo.png" alt="User Photo">
+            <div style="font-weight: bold; color: #005a87;">Enrollment No: <span id="u_enroll">---</span></div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-item">
+                <span class="label">Name</span>
+                <span class="value" id="u_name">---</span>
             </div>
-
-            <div class="info-container">
-                <div>
-                    <p>Name: <span id="name" style="font-weight:bold;">...</span></p>
-                    <p>Issue Date: <span id="issueDate">...</span></p>
-                    <p>Course: <span id="course" style="font-weight:bold; color:#005a87;">...</span></p>
-                    <p>Branch: <span id="branch">...</span></p>
-                </div>
-                <div>
-                    <p>Iqama/Passport: <span id="iqama">...</span></p>
-                    <p>Expiry Date: <span id="expiryDate">...</span></p>
-                </div>
+            <div class="info-item">
+                <span class="label">Iqama/Passport</span>
+                <span class="value" id="u_iqama">---</span>
             </div>
-
-            <img src="verified.png" class="verified-seal">
-
-            <div class="cert-footer-text">
-                <p>We Certify that <strong><span id="name2">...</span></strong> is trained in the erection, inspection, modification, and dismantling of Tube & Coupler, Frame, Ringlock, Cuplock, Kwikstage, Haki, and Trestle scaffolding systems with strong competence in load classification, stability, bracing, access provision, and fall-protection measures in full compliance with OSHA 1910 & 1926, BS EN 12811-1, and ISO 45001:2018.</p>
-                <p style="font-size:8px; margin-top:10px;">This certificate is valid for 1 year, after that refresher training is required.</p>
+            <div class="info-item">
+                <span class="label">Course</span>
+                <span class="value" id="u_course" style="color:#005a87;">---</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Expiry Date</span>
+                <span class="value" id="u_expiry">---</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Issue Date</span>
+                <span class="value" id="u_issue">---</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Branch</span>
+                <span class="value" id="u_branch">---</span>
             </div>
         </div>
-    </div>
 
-    <div class="marquee-footer">
-        <div class="track">
-            <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
-            <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
-            <img src="saac.png"> <img src="anci.png">
-            <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
-            <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
+        <div class="seal-area">
+            <img src="verified.png" alt="Verified Seal">
+        </div>
+
+        <div class="footer-desc">
+            We certify that <strong id="u_name_btm">---</strong> is trained in industrial safety standards including OSHA 1910 & 1926 and ISO 45001:2018.
+            <br><br>
+            <small>* This certificate is valid for 1 year from the date of issue.</small>
         </div>
     </div>
+</div>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
+<div class="logo-slider">
+    <div class="slide-track">
+        <img src="iso.png"> <img src="oeha.png"> <img src="saso.png"> <img src="sabic.png"> <img src="anci.png">
+        <img src="iso.png"> <img src="oeha.png"> <img src="saso.png"> <img src="sabic.png"> <img src="anci.png">
+    </div>
+</div>
 
-        fetch('data.json')
-            .then(res => res.json())
-            .then(data => {
-                if(id && data[id]){
-                    const s = data[id];
-                    document.getElementById('name').innerText = s.name;
-                    document.getElementById('name2').innerText = s.name;
-                    document.getElementById('enrollNo').innerText = id;
-                    document.getElementById('course').innerText = s.course;
-                    document.getElementById('iqama').innerText = s.iqama;
-                    document.getElementById('issueDate').innerText = s.issue;
-                    document.getElementById('expiryDate').innerText = s.expiry;
-                    document.getElementById('branch').innerText = s.branch;
-                    document.getElementById('userPhoto').src = s.photo;
-                }
-            });
-    </script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    fetch('data.json')
+        .then(res => res.json())
+        .then(data => {
+            if(id && data[id]){
+                const user = data[id];
+                document.getElementById('u_name').innerText = user.name || "N/A";
+                document.getElementById('u_name_btm').innerText = user.name || "N/A";
+                document.getElementById('u_enroll').innerText = id;
+                document.getElementById('u_course').innerText = user.course || "N/A";
+                document.getElementById('u_iqama').innerText = user.iqama || "N/A";
+                document.getElementById('u_issue').innerText = user.issue || "N/A";
+                document.getElementById('u_expiry').innerText = user.expiry || "N/A";
+                document.getElementById('u_branch').innerText = user.branch || "N/A";
+                if(user.photo) document.getElementById('u_photo').src = user.photo;
+            } else {
+                document.body.innerHTML = "<h1 style='text-align:center; margin-top:100px;'>Data Not Found!</h1>";
+            }
+        })
+        .catch(err => console.error("Error:", err));
+</script>
+
 </body>
 </html>
