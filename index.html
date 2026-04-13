@@ -7,18 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-        }
+        body { font-family: sans-serif; background-color: #f4f7f6; }
 
-        /* ১. ব্যাকগ্রাউন্ড এরিয়া (সংশোধিত Path: .jpeg) */
+        /* ১. ব্যাকগ্রাউন্ড ঠিক করা হলো (আপনার ফাইল অনুযায়ী .png) */
         .hero-section {
             width: 100%;
-            height: 55vh; /* মোবাইলের ৫৫% */
-            background: url('background.jpeg') no-repeat center center; /* আপনার ফাইল অনুযায়ী .jpeg দেওয়া হলো */
+            height: 55vh;
+            background: url('background.png') no-repeat center center; /* */
             background-size: cover;
             position: relative;
             display: flex;
@@ -26,44 +21,36 @@
             justify-content: center;
         }
 
-        /* ২. সার্টিফিকেট ফ্রেম (স্থির থাকবে) */
         .cert-container {
             width: 90%;
             max-width: 600px;
             background: white;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
-            z-index: 10;
         }
 
-        .cert-container img {
-            width: 100%;
-            display: block;
-        }
+        .cert-container img { width: 100%; display: block; }
 
-        /* ৩. ডাউনলোড বাটন */
         .download-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 90, 135, 0.8);
+            top: 15px;
+            right: 15px;
+            background: #005a87;
             color: white;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 18px;
-            transition: 0.3s;
+            font-size: 20px;
+            z-index: 20;
         }
 
-        .download-btn:hover { background: #003d5c; }
-
-        /* ৪. লোগো স্লাইডার (সংশোধিত ফাইলের নাম অনুযায়ী) */
+        /* ২. লোগো স্লাইডার (আপনার ফাইলের নাম অনুযায়ী) */
         .slider-box {
             width: 100%;
             background: white;
@@ -74,69 +61,22 @@
 
         .track {
             display: flex;
-            width: calc(120px * 20); /* আরও লোগোর জন্য উইডথ বাড়ানো হলো */
-            animation: scroll 20s linear infinite;
+            width: calc(120px * 20);
+            animation: scroll 25s linear infinite;
         }
 
-        .track img {
-            width: 80px;
-            margin: 0 20px;
-            object-fit: contain;
-        }
+        .track img { width: 80px; margin: 0 20px; object-fit: contain; }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-120px * 10)); } /* ১০টি লোগোর জন্য */
+            100% { transform: translateX(calc(-120px * 10)); }
         }
 
-        /* ৫. নীল কালারের তথ্য সেকশন */
-        .info-footer {
-            background-color: #1a4a5a;
-            color: white;
-            padding: 40px 20px;
-        }
-
-        .info-footer h2 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            border-left: 4px solid #fff;
-            padding-left: 10px;
-        }
-
-        .info-footer p {
-            font-size: 14px;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        .branch-list {
-            margin-bottom: 30px;
-        }
-
-        .branch-list h3 { margin-bottom: 10px; font-size: 18px; color: #a5d6e7; }
-        .branch-list div { margin-bottom: 5px; font-size: 15px; }
-
-        .contact-info {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 15px;
-        }
-
-        .contact-item i { margin-right: 10px; color: #a5d6e7; }
-
-        .copyright {
-            text-align: center;
-            font-size: 12px;
-            margin-top: 30px;
-            opacity: 0.6;
-        }
+        /* ৩. তথ্য সেকশন */
+        .info-footer { background-color: #1a4a5a; color: white; padding: 40px 20px; }
+        .branch-list h3, .contact-info h3 { color: #a5d6e7; margin-bottom: 10px; }
+        .item { margin-bottom: 8px; font-size: 15px; opacity: 0.9; }
+        .copyright { text-align: center; font-size: 12px; margin-top: 30px; opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -152,67 +92,52 @@
 
     <div class="slider-box">
         <div class="track">
-            <img src="iso.png"> 
-            <img src="saso.png"> 
-            <img src="anci.png"> <img src="sabic.png"> 
-            <img src="oeha.png"> <img src="saac.png"> 
-            <img src="iosh.png"> 
-            <img src="tavto.png">
-            <img src="iso.png"> 
-            <img src="saso.png"> 
-            <img src="anci.png"> 
-            <img src="sabic.png"> 
-            <img src="oeha.png"> 
-            <img src="saac.png"> 
-            <img src="iosh.png"> 
-            <img src="tavto.png">
+            <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> 
+            <img src="sabic.png"> <img src="osha.png"> <img src="aramco.png">
+            <img src="iosh.png"> <img src="tavto.png"> <img src="verified.png">
+            <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> 
+            <img src="sabic.png"> <img src="osha.png"> <img src="aramco.png">
+            <img src="iosh.png"> <img src="tavto.png"> <img src="verified.png">
         </div>
     </div>
 
     <div class="info-footer">
         <div style="max-width: 600px; margin: auto;">
-            <div style="font-weight: bold; font-size: 20px; margin-bottom: 10px; color: #fff;">Knowledge Drag</div>
-            
-            <p>Leadership in Occupational Safety and Certified Trainings. We provide world-class industrial education.</p>
+            <h2 style="margin-bottom: 15px;">Knowledge Drag</h2>
+            <p style="margin-bottom: 25px;">Leadership in Occupational Safety and Certified Trainings.</p>
 
             <div class="branch-list">
                 <h3>Our Branches</h3>
-                <div>Al-Thuqbah, Khobar KSA</div>
-                <div>Al Jubail, KSA</div>
-                <div>Yanbu, KSA</div>
-                <div>Riyadh, KSA</div>
+                <div class="item">Al-Thuqbah, Khobar KSA / Al Jubail, KSA</div>
+                <div class="item">Yanbu, KSA / Riyadh, KSA</div>
             </div>
 
-            <div class="contact-info">
+            <div class="contact-info" style="margin-top: 20px;">
                 <h3>Get in Touch</h3>
-                <div class="contact-item"><i class="fas fa-phone"></i> +966542004373</div>
-                <div class="contact-item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
-                <div class="contact-item"><i class="fab fa-whatsapp"></i> WhatsApp Support</div>
+                <div class="item"><i class="fas fa-phone"></i> +966542004373</div>
+                <div class="item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
             </div>
-
-            <div class="copyright">
-                © 2025 Knowledge Drag all right reserved.
-            </div>
+            <div class="copyright">© 2025 Knowledge Drag all right reserved.</div>
         </div>
     </div>
 
     <script>
-        // ইউআরএল থেকে আইডি এবং ছবি লোড
         const urlParams = new URLSearchParams(window.location.search);
         const certId = urlParams.get('id');
         const certImg = document.getElementById('main-cert');
         const dlLink = document.getElementById('download-link');
 
         if (certId) {
+            // আপনার certificates ফোল্ডারের ভেতরে ছবি খুঁজবে
             const imagePath = "certificates/" + certId + ".png";
             certImg.src = imagePath;
-            dlLink.href = imagePath; // ডাউনলোড বাটনের জন্য পাথ সেট
+            dlLink.href = imagePath;
         } else {
             document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>No ID Provided</h2>";
         }
 
         certImg.onerror = function() {
-            document.querySelector('.cert-container').innerHTML = "<h2 style='padding:20px; color:red; text-align:center;'>Certificate Not Found</h2>";
+            this.src = "template.png"; // ছবি না পেলে টেম্পলেট দেখাবে
         };
     </script>
 </body>
