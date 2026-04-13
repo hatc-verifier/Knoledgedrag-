@@ -1,205 +1,53 @@
-                <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Verification - Knowledge Drag</title>
+    <title>Verification System</title>
     <style>
-        * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; }
-
-        /* হিরো সেকশন */
-        .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg') no-repeat center center;
-            background-size: cover;
-            height: 35vh;
+        body { margin: 0; padding: 0; display: flex; justify-content: center; background: #f0f0f0; }
+        
+        /* সার্টিফিকেটের মূল কন্টেইনার */
+        .certificate-container {
+            position: relative;
             width: 100%;
+            max-width: 800px; /* আপনার টেমপ্লেটের সাইজ অনুযায়ী কমবেশি করতে পারেন */
+            aspect-ratio: 1.414 / 1; /* সার্টিফিকেটের স্ট্যান্ডার্ড অনুপাত */
+            background-image: url('40799.png'); /* এখানে আপনার আপলোড করা ছবির নাম দিন */
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-top: 20px;
         }
 
-        .wrapper {
-            margin-top: -120px;
-            display: flex;
-            justify-content: center;
-            padding: 15px;
-            margin-bottom: 50px;
-        }
+        /* ডাইনামিক তথ্যগুলোর পজিশনিং */
+        .info { position: absolute; font-family: 'Arial', sans-serif; font-weight: bold; color: #000; }
 
-        .cert-box {
-            background: white;
-            width: 100%;
-            max-width: 650px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
-            border-top: 5px solid #005a87;
-        }
-
-        /* হেডার ডিজাইন */
-        .top-header {
-            background: #005a87;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .user-profile {
-            text-align: center;
-            padding: 20px;
-        }
-        .user-profile img {
-            width: 110px;
-            height: 130px;
-            border: 3px solid #eee;
-            border-radius: 4px;
+        #user_photo {
+            position: absolute;
+            top: 25%; /* ওপর থেকে দূরত্ব (অ্যাডজাস্ট করুন) */
+            left: 44%; /* বাম থেকে দূরত্ব */
+            width: 100px;
+            height: 120px;
+            border: 2px solid #fff;
             object-fit: cover;
-            margin-bottom: 10px;
         }
 
-        /* ইনফরমেশন গ্রিড */
-        .info-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 0 30px;
-            text-align: left;
-            font-size: 13px;
-        }
-        .info-item { border-bottom: 1px solid #eee; padding: 5px 0; }
-        .label { color: #777; font-weight: bold; display: block; font-size: 10px; text-transform: uppercase; }
-        .value { color: #333; font-weight: 600; font-size: 14px; }
+        #name { top: 55%; left: 0; width: 100%; text-align: center; font-size: 24px; color: #005a87; }
+        #enrollment { top: 48%; left: 44%; font-size: 14px; }
+        #course { top: 65%; left: 10%; font-size: 16px; color: #005a87; max-width: 300px; }
+        #expiry { top: 65%; right: 15%; font-size: 16px; }
+        /* এভাবে আপনার ছবির ডিজাইন অনুযায়ী CSS দিয়ে পজিশন ঠিক করে নিতে হবে */
 
-        /* ভেরিফাইড সিল */
-        .seal-area { text-align: center; padding: 20px; }
-        .seal-area img { width: 80px; }
-
-        /* ফুটার টেক্সট */
-        .footer-desc {
-            background: #f9f9f9;
-            padding: 20px;
-            font-size: 11px;
-            color: #555;
-            line-height: 1.6;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-
-        /* লোগো স্লাইডার */
-        .logo-slider {
-            background: white;
-            padding: 20px 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .slide-track {
-            display: inline-block;
-            animation: scroll 25s linear infinite;
-        }
-        .slide-track img { height: 40px; margin: 0 30px; opacity: 0.7; }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* মোবাইল স্ক্রিন রিকোয়ারমেন্ট অনুযায়ী অ্যাডজাস্টমেন্ট */
-        @media only screen and (max-width: 600px) {
-            .hero-bg {
-                height: 25vh;
-            }
-            .wrapper {
-                margin-top: -80px;
-            }
-            .info-section {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                padding: 0 15px;
-            }
-            .cert-box {
-                margin-top: -50px;
-            }
-            .top-header {
-                padding: 10px;
-            }
-            .user-profile img {
-                width: 90px;
-                height: 110px;
-            }
-            .footer-desc {
-                font-size: 10px;
-                padding: 10px;
-            }
-            .logo-slider {
-                padding: 10px 0;
-            }
-        }
     </style>
 </head>
 <body>
 
-<div class="hero-bg"></div>
-
-<div class="wrapper">
-    <div class="cert-box">
-        <div class="top-header">
-            <img src="logo.png" style="height: 35px; filter: brightness(0) invert(1);">
-            <div style="text-align: center;">
-                <h2 style="margin:0; font-size: 18px;">Official Certificate</h2>
-                <small>Safety and Industrial Trainings</small>
-            </div>
-            <div style="text-align: right; font-size: 12px;">شهادة رسمية</div>
-        </div>
-
-        <div class="user-profile">
-            <img id="u_photo" src="logo.png" alt="User Photo">
-            <div style="font-weight: bold; color: #005a87;">Enrollment No: <span id="u_enroll">---</span></div>
-        </div>
-
-        <div class="info-section">
-            <div class="info-item">
-                <span class="label">Name</span>
-                <span class="value" id="u_name">---</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Iqama/Passport</span>
-                <span class="value" id="u_iqama">---</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Course</span>
-                <span class="value" id="u_course" style="color:#005a87;">---</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Expiry Date</span>
-                <span class="value" id="u_expiry">---</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Issue Date</span>
-                <span class="value" id="u_issue">---</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Branch</span>
-                <span class="value" id="u_branch">---</span>
-            </div>
-        </div>
-
-        <div class="seal-area">
-            <img src="verified.png" alt="Verified Seal">
-        </div>
-
-        <div class="footer-desc">
-            We certify that <strong id="u_name_btm">---</strong> is trained in industrial safety standards including OSHA 1910 & 1926 and ISO 45001:2018.
-            <br><br>
-            <small>* This certificate is valid for 1 year from the date of issue.</small>
-        </div>
-    </div>
-</div>
-
-<div class="logo-slider">
-    <div class="slide-track">
-        <img src="iso.png"> <img src="oeha.png"> <img src="saso.png"> <img src="sabic.png"> <img src="anci.png">
-        <img src="iso.png"> <img src="oeha.png"> <img src="saso.png"> <img src="sabic.png"> <img src="anci.png">
-    </div>
+<div class="certificate-container" id="cert-area">
+    <img id="user_photo" src="" alt="">
+    <div id="name" class="info"></div>
+    <div id="enrollment" class="info"></div>
+    <div id="course" class="info"></div>
+    <div id="expiry" class="info"></div>
 </div>
 
 <script>
@@ -211,20 +59,15 @@
         .then(data => {
             if(id && data[id]){
                 const user = data[id];
-                document.getElementById('u_name').innerText = user.name || "N/A";
-                document.getElementById('u_name_btm').innerText = user.name || "N/A";
-                document.getElementById('u_enroll').innerText = id;
-                document.getElementById('u_course').innerText = user.course || "N/A";
-                document.getElementById('u_iqama').innerText = user.iqama || "N/A";
-                document.getElementById('u_issue').innerText = user.issue || "N/A";
-                document.getElementById('u_expiry').innerText = user.expiry || "N/A";
-                document.getElementById('u_branch').innerText = user.branch || "N/A";
-                if(user.photo) document.getElementById('u_photo').src = user.photo;
+                document.getElementById('name').innerText = user.name;
+                document.getElementById('enrollment').innerText = id;
+                document.getElementById('course').innerText = user.course;
+                document.getElementById('expiry').innerText = user.expiry;
+                document.getElementById('user_photo').src = user.photo;
             } else {
-                document.body.innerHTML = "<h1 style='text-align:center; margin-top:100px;'>Data Not Found!</h1>";
+                document.body.innerHTML = "<h1>Data Not Found</h1>";
             }
-        })
-        .catch(err => console.error("Error:", err));
+        });
 </script>
 
 </body>
