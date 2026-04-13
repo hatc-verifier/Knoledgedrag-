@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Certificate Verification</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="certificate-box">
+            <div class="header-logo">
+                <img src="logo.png" alt="Company Logo">
+            </div>
+            
+            <h1>Official Certificate</h1>
+            <p>Safety and Industrial Trainings</p>
+
+            <div class="user-info">
+                <div class="photo-container">
+                    <img id="userPhoto" src="default-user.jpg" alt="User Photo">
+                </div>
+                <div class="details">
+                    <p><strong>Name:</strong> <span id="name">...</span></p>
+                    <p><strong>Enrollment No:</strong> <span id="enrollNo">...</span></p>
+                    <p><strong>Iqama/Passport:</strong> <span id="iqama">...</span></p>
+                    <p><strong>Course:</strong> <span id="course">...</span></p>
+                    <p><strong>Issue Date:</strong> <span id="issueDate">...</span></p>
+                    <p><strong>Expiry Date:</strong> <span id="expiryDate">...</span></p>
+                </div>
+            </div>
+
+            <div class="verified-stamp">
+                <img src="verified.png" alt="Verified Seal">
+            </div>
+        </div>
+
+        <div class="slider">
+            <div class="slide-track">
+                <img src="iso.png" alt="ISO">
+                <img src="osha.png" alt="OSHA">
+                <img src="saso.png" alt="SASO">
+                <img src="iso.png" alt="ISO">
+                <img src="osha.png" alt="OSHA">
+                <img src="saso.png" alt="SASO">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const students = {
+            "258-KD-SF-26": {
+                name: "KAMRUL ISLAM",
+                iqama: "2589913066",
+                course: "SCAFFOLDING ERECTION AND DISMANTLING",
+                issue: "01-02-2026",
+                expiry: "31-01-2027",
+                photo: "photo1.jpg"
+            },
+            "259-KD-SF-27": {
+                name: "MD MAHIBULLAH",
+                iqama: "2580001234",
+                course: "WPR SAFETY TRAINING",
+                issue: "10-03-2026",
+                expiry: "09-03-2027",
+                photo: "photo2.jpg"
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        if (id && students[id]) {
+            document.getElementById('name').innerText = students[id].name;
+            document.getElementById('enrollNo').innerText = id;
+            document.getElementById('iqama').innerText = students[id].iqama;
+            document.getElementById('course').innerText = students[id].course;
+            document.getElementById('issueDate').innerText = students[id].issue;
+            document.getElementById('expiryDate').innerText = students[id].expiry;
+            document.getElementById('userPhoto').src = students[id].photo;
+        }
+    </script>
+</body>
+</html>
+
