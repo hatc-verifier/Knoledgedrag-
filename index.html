@@ -9,17 +9,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: sans-serif; background-color: #f4f7f6; overflow-x: hidden; }
 
-        /* ১. ব্যাকগ্রাউন্ড এরিয়া */
+        /* ১. ব্যাকগ্রাউন্ড এরিয়া - সার্টিফিকেট উপরে উঠানো হয়েছে */
         .hero-section {
             width: 100%;
-            height: 60vh; /* হাইট একটু বাড়ানো হলো যাতে সার্টিফিকেট নিচে নামে */
+            height: 60vh;
             background: url('background.png') no-repeat center center;
             background-size: cover;
             position: relative;
             display: flex;
-            align-items: flex-end; /* সার্টিফিকেট নিচে নামানোর জন্য */
+            align-items: center; /* উপরে উঠানোর জন্য সেন্টার করা হলো */
             justify-content: center;
-            padding-bottom: 30px; /* নিচ থেকে দূরত্ব */
+            padding-bottom: 0; 
         }
 
         .cert-container {
@@ -28,53 +28,44 @@
             background: white;
             position: relative;
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            border-radius: 8px;
+            border-radius: 4px;
             z-index: 10;
         }
 
-        .cert-container img { width: 100%; display: block; border-radius: 8px; }
+        .cert-container img { width: 100%; display: block; border-radius: 4px; }
 
-        /* ২. ডাউনলোড বাটন (আরো ডান পাশে) */
+        /* ২. ডাউনলোড বাটন - শুধু ছোট অ্যারো চিহ্ন */
         .download-btn {
             position: absolute;
-            top: 10px;
-            right: -15px; /* ফ্রেমের বাইরে একটু ডানে নেওয়া হলো */
-            background: #005a87;
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 5px; /* একদম কোণায় */
+            right: 5px; /* একদম কোণায় */
+            color: #333; /* বৃত্ত ছাড়া সাধারণ কালার */
             text-decoration: none;
-            font-size: 22px;
+            font-size: 16px; /* ছোট সাইজ */
             z-index: 30;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0.7;
+            transition: 0.3s;
         }
 
-        @media (max-width: 600px) {
-            .download-btn { right: 5px; top: 5px; } /* মোবাইলে যাতে স্ক্রিনের বাইরে না যায় */
-        }
+        .download-btn:hover { opacity: 1; color: #000; }
 
-        /* ৩. লোগো স্লাইডার (সাদা অংশ ও লোগো বড় করা হলো) */
+        /* ৩. লোগো স্লাইডার */
         .slider-box {
             width: 100%;
             background: white;
-            padding: 50px 0; /* সাদা অংশ বড় করা হলো */
+            padding: 50px 0;
             overflow: hidden;
             border-bottom: 2px solid #ddd;
-            margin-top: 10px;
         }
 
         .track {
             display: flex;
-            width: calc(180px * 16); /* লোগো বড় হওয়ায় ট্র্যাক বড় করা হলো */
+            width: calc(180px * 16);
             animation: scroll 25s linear infinite;
         }
 
         .track img { 
-            width: 120px; /* লোগো সাইজ বড় করা হলো */
+            width: 120px; 
             height: 70px;
             margin: 0 40px; 
             object-fit: contain; 
@@ -90,7 +81,7 @@
         .footer-content { max-width: 800px; margin: auto; }
         .branch-list h3, .contact-info h3 { color: #a5d6e7; margin-bottom: 15px; font-size: 20px; }
         .item { margin-bottom: 10px; font-size: 16px; opacity: 0.9; display: flex; align-items: center; }
-        .item i { margin-right: 12px; width: 20px; text-align: center; }
+        .item i { margin-right: 12px; }
         .copyright { text-align: center; font-size: 13px; margin-top: 40px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
     </style>
 </head>
@@ -119,21 +110,19 @@
     <div class="info-footer">
         <div class="footer-content">
             <h2 style="margin-bottom: 20px; font-size: 28px; border-left: 5px solid #a5d6e7; padding-left: 15px;">Knowledge Drag</h2>
-            <p style="margin-bottom: 30px; font-size: 17px; line-height: 1.6;">Leadership in Occupational Safety and Certified Trainings. We ensure global standards in industrial safety education.</p>
+            <p style="margin-bottom: 30px; font-size: 17px; line-height: 1.6;">Leadership in Occupational Safety and Certified Trainings.</p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
                 <div class="branch-list">
                     <h3>Our Branches</h3>
-                    <div class="item"><i class="fas fa-map-marker-alt"></i> Al-Thuqbah, Khobar KSA</div>
-                    <div class="item"><i class="fas fa-map-marker-alt"></i> Al Jubail, KSA</div>
-                    <div class="item"><i class="fas fa-map-marker-alt"></i> Yanbu & Riyadh, KSA</div>
+                    <div class="item"><i class="fas fa-map-marker-alt"></i> Al-Thuqbah & Al Jubail</div>
+                    <div class="item"><i class="fas fa-map-marker-alt"></i> Yanbu & Riyadh</div>
                 </div>
 
                 <div class="contact-info">
                     <h3>Get in Touch</h3>
                     <div class="item"><i class="fas fa-phone-alt"></i> +966542004373</div>
                     <div class="item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
-                    <div class="item"><i class="fab fa-whatsapp"></i> WhatsApp Support Available</div>
                 </div>
             </div>
             
@@ -152,12 +141,12 @@
             certImg.src = imagePath;
             dlLink.href = imagePath;
         } else {
-            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Please provide a valid Certificate ID in the URL.</h2>";
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Invalid URL</h2>";
         }
 
         certImg.onerror = function() {
             this.src = "template.png"; 
-            dlLink.style.display = "none"; // ছবি না থাকলে ডাউনলোড বাটন দেখাবে না
+            dlLink.style.display = "none";
         };
     </script>
 </body>
