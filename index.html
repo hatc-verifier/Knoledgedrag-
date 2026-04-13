@@ -7,76 +7,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: sans-serif; background-color: #f4f7f6; }
+        body { font-family: sans-serif; background-color: #f4f7f6; overflow-x: hidden; }
 
-        /* ১. ব্যাকগ্রাউন্ড ঠিক করা হলো (আপনার ফাইল অনুযায়ী .png) */
+        /* ১. ব্যাকগ্রাউন্ড এরিয়া */
         .hero-section {
             width: 100%;
-            height: 55vh;
-            background: url('background.png') no-repeat center center; /* */
+            height: 60vh; /* হাইট একটু বাড়ানো হলো যাতে সার্টিফিকেট নিচে নামে */
+            background: url('background.png') no-repeat center center;
             background-size: cover;
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-end; /* সার্টিফিকেট নিচে নামানোর জন্য */
             justify-content: center;
+            padding-bottom: 30px; /* নিচ থেকে দূরত্ব */
         }
 
         .cert-container {
             width: 90%;
-            max-width: 600px;
+            max-width: 650px;
             background: white;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             border-radius: 8px;
-            overflow: hidden;
+            z-index: 10;
         }
 
-        .cert-container img { width: 100%; display: block; }
+        .cert-container img { width: 100%; display: block; border-radius: 8px; }
 
+        /* ২. ডাউনলোড বাটন (আরো ডান পাশে) */
         .download-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: -15px; /* ফ্রেমের বাইরে একটু ডানে নেওয়া হলো */
             background: #005a87;
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 20px;
-            z-index: 20;
+            font-size: 22px;
+            z-index: 30;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* ২. লোগো স্লাইডার (আপনার ফাইলের নাম অনুযায়ী) */
+        @media (max-width: 600px) {
+            .download-btn { right: 5px; top: 5px; } /* মোবাইলে যাতে স্ক্রিনের বাইরে না যায় */
+        }
+
+        /* ৩. লোগো স্লাইডার (সাদা অংশ ও লোগো বড় করা হলো) */
         .slider-box {
             width: 100%;
             background: white;
-            padding: 20px 0;
+            padding: 50px 0; /* সাদা অংশ বড় করা হলো */
             overflow: hidden;
             border-bottom: 2px solid #ddd;
+            margin-top: 10px;
         }
 
         .track {
             display: flex;
-            width: calc(120px * 20);
+            width: calc(180px * 16); /* লোগো বড় হওয়ায় ট্র্যাক বড় করা হলো */
             animation: scroll 25s linear infinite;
         }
 
-        .track img { width: 80px; margin: 0 20px; object-fit: contain; }
+        .track img { 
+            width: 120px; /* লোগো সাইজ বড় করা হলো */
+            height: 70px;
+            margin: 0 40px; 
+            object-fit: contain; 
+        }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-120px * 10)); }
+            100% { transform: translateX(calc(-180px * 8)); }
         }
 
-        /* ৩. তথ্য সেকশন */
-        .info-footer { background-color: #1a4a5a; color: white; padding: 40px 20px; }
-        .branch-list h3, .contact-info h3 { color: #a5d6e7; margin-bottom: 10px; }
-        .item { margin-bottom: 8px; font-size: 15px; opacity: 0.9; }
-        .copyright { text-align: center; font-size: 12px; margin-top: 30px; opacity: 0.6; }
+        /* ৪. তথ্য সেকশন */
+        .info-footer { background-color: #1a4a5a; color: white; padding: 50px 20px; }
+        .footer-content { max-width: 800px; margin: auto; }
+        .branch-list h3, .contact-info h3 { color: #a5d6e7; margin-bottom: 15px; font-size: 20px; }
+        .item { margin-bottom: 10px; font-size: 16px; opacity: 0.9; display: flex; align-items: center; }
+        .item i { margin-right: 12px; width: 20px; text-align: center; }
+        .copyright { text-align: center; font-size: 13px; margin-top: 40px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
     </style>
 </head>
 <body>
@@ -94,30 +109,35 @@
         <div class="track">
             <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> 
             <img src="sabic.png"> <img src="osha.png"> <img src="aramco.png">
-            <img src="iosh.png"> <img src="tavto.png"> <img src="verified.png">
+            <img src="iosh.png"> <img src="tavto.png">
             <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> 
             <img src="sabic.png"> <img src="osha.png"> <img src="aramco.png">
-            <img src="iosh.png"> <img src="tavto.png"> <img src="verified.png">
+            <img src="iosh.png"> <img src="tavto.png">
         </div>
     </div>
 
     <div class="info-footer">
-        <div style="max-width: 600px; margin: auto;">
-            <h2 style="margin-bottom: 15px;">Knowledge Drag</h2>
-            <p style="margin-bottom: 25px;">Leadership in Occupational Safety and Certified Trainings.</p>
+        <div class="footer-content">
+            <h2 style="margin-bottom: 20px; font-size: 28px; border-left: 5px solid #a5d6e7; padding-left: 15px;">Knowledge Drag</h2>
+            <p style="margin-bottom: 30px; font-size: 17px; line-height: 1.6;">Leadership in Occupational Safety and Certified Trainings. We ensure global standards in industrial safety education.</p>
 
-            <div class="branch-list">
-                <h3>Our Branches</h3>
-                <div class="item">Al-Thuqbah, Khobar KSA / Al Jubail, KSA</div>
-                <div class="item">Yanbu, KSA / Riyadh, KSA</div>
-            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div class="branch-list">
+                    <h3>Our Branches</h3>
+                    <div class="item"><i class="fas fa-map-marker-alt"></i> Al-Thuqbah, Khobar KSA</div>
+                    <div class="item"><i class="fas fa-map-marker-alt"></i> Al Jubail, KSA</div>
+                    <div class="item"><i class="fas fa-map-marker-alt"></i> Yanbu & Riyadh, KSA</div>
+                </div>
 
-            <div class="contact-info" style="margin-top: 20px;">
-                <h3>Get in Touch</h3>
-                <div class="item"><i class="fas fa-phone"></i> +966542004373</div>
-                <div class="item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="item"><i class="fas fa-phone-alt"></i> +966542004373</div>
+                    <div class="item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
+                    <div class="item"><i class="fab fa-whatsapp"></i> WhatsApp Support Available</div>
+                </div>
             </div>
-            <div class="copyright">© 2025 Knowledge Drag all right reserved.</div>
+            
+            <div class="copyright">© 2025 Knowledge Drag. All rights reserved.</div>
         </div>
     </div>
 
@@ -128,16 +148,16 @@
         const dlLink = document.getElementById('download-link');
 
         if (certId) {
-            // আপনার certificates ফোল্ডারের ভেতরে ছবি খুঁজবে
             const imagePath = "certificates/" + certId + ".png";
             certImg.src = imagePath;
             dlLink.href = imagePath;
         } else {
-            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>No ID Provided</h2>";
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Please provide a valid Certificate ID in the URL.</h2>";
         }
 
         certImg.onerror = function() {
-            this.src = "template.png"; // ছবি না পেলে টেম্পলেট দেখাবে
+            this.src = "template.png"; 
+            dlLink.style.display = "none"; // ছবি না থাকলে ডাউনলোড বাটন দেখাবে না
         };
     </script>
 </body>
