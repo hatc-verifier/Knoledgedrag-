@@ -3,89 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Verification System</title>
+    <title>Knowledge Drag Verification</title>
     <style>
-        /* CSS অংশ: ডিজাইনের জন্য */
+        /* ডিজাইন অংশ */
         * { box-sizing: border-box; }
-        body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f0f0f0; overflow: hidden;
-        }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: sans-serif; overflow: hidden; }
 
-        /* ওপরের অংশ: যেখানে ব্যাকগ্রাউন্ড ছবি থাকবে */
-        .top-section {
+        /* ওপরের ব্যাকগ্রাউন্ড অংশ */
+        .top-bg {
             background: url('background.jpg') no-repeat center center;
             background-size: cover;
-            height: 82vh; /* স্ক্রিনের ৮২% জায়গা নেবে */
+            height: 80vh; /* স্ক্রিনের ৮০% অংশ */
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 10px;
         }
 
-        /* সাদা সার্টিফিকেট কার্ড */
-        .cert-card {
+        /* কার্ডের ডিজাইন */
+        .card {
             background: rgba(255, 255, 255, 0.98);
             width: 100%;
-            max-width: 420px;
-            padding: 15px;
-            border-radius: 12px;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
             border-top: 8px solid #005a87;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
         }
 
-        .header { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 12px; }
-        .header img { width: 50px; }
+        .card-header { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
+        .card-header img { width: 50px; }
         .header-text h3 { margin: 0; color: #005a87; font-size: 18px; }
-        .header-text p { margin: 0; font-size: 11px; color: #777; }
+        .header-text p { margin: 0; font-size: 10px; color: #666; }
 
-        .user-photo img { 
-            width: 120px; height: 140px; 
-            border: 2px solid #005a87; 
-            object-fit: cover; 
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
+        .user-photo img { width: 120px; height: 140px; border: 2px solid #005a87; object-fit: cover; margin-bottom: 10px; }
 
-        .info-table { width: 100%; text-align: left; }
-        .info-table p { 
-            margin: 6px 0; font-size: 13px; color: #333; 
-            border-bottom: 1px solid #eee; padding-bottom: 2px;
-        }
+        .details { text-align: left; }
+        .details p { margin: 6px 0; font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
 
-        .stamp img { width: 75px; margin-top: 10px; }
+        .stamp img { width: 80px; margin-top: 10px; }
 
-        /* নিচের অংশ: যেখানে লোগো দৌড়াবে */
-        .bottom-marquee {
-            height: 18vh; /* স্ক্রিনের নিচের ১৮% জায়গা */
+        /* নিচের সাদা অংশ যেখানে লোগো ঘুরবে */
+        .bottom-white-bar {
+            height: 20vh; /* স্ক্রিনের নিচের ২০% অংশ */
             background: white;
             display: flex;
             align-items: center;
             overflow: hidden;
-            border-top: 2px solid #ccc;
+            border-top: 2px solid #ddd;
         }
 
-        .track {
+        .marquee {
             display: flex;
-            width: calc(120px * 16);
-            animation: move 20s linear infinite;
+            width: 2000px;
+            animation: scroll 20s linear infinite;
         }
 
-        .track img { width: 85px; margin: 0 25px; height: auto; }
+        .marquee img { width: 80px; margin: 0 25px; }
 
-        @keyframes move {
+        @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-120px * 8)); }
+            100% { transform: translateX(-1000px); }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-section">
-        <div class="cert-card">
-            <div class="header">
+    <div class="top-bg">
+        <div class="card">
+            <div class="card-header">
                 <img src="logo.png">
                 <div class="header-text">
                     <h3>Knowledge Drag</h3>
@@ -97,7 +84,7 @@
                 <img id="userPhoto" src="logo.png">
             </div>
 
-            <div class="info-table">
+            <div class="details">
                 <p><strong>Name:</strong> <span id="name">...</span></p>
                 <p><strong>Enrollment No:</strong> <span id="enrollNo">...</span></p>
                 <p><strong>Course:</strong> <span id="course">...</span></p>
@@ -111,23 +98,21 @@
         </div>
     </div>
 
-    <div class="bottom-marquee">
-        <div class="track">
+    <div class="bottom-white-bar">
+        <div class="marquee">
             <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
             <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
             <img src="saac.png"> <img src="anci.png">
             <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
             <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
-            <img src="saac.png"> <img src="anci.png">
         </div>
     </div>
 
     <script>
-        // জাভাস্ক্রিপ্ট অংশ: তথ্য ম্যানেজ করার জন্য
+        // এখানে আপনার সব ডাটা থাকবে
         const students = {
             "121086": {
                 name: "MD MAHIBULLAH",
-                iqama: "258XXXXXXX",
                 course: "SAFETY SPECIALIST / WPR",
                 issue: "13-04-2026",
                 expiry: "12-04-2027",
@@ -135,7 +120,6 @@
             },
             "258-KD-SF-26": {
                 name: "KAMRUL ISLAM",
-                iqama: "2589913066",
                 course: "SCAFFOLDING ERECTION AND DISMANTLING",
                 issue: "01-02-2026",
                 expiry: "31-01-2027",
@@ -154,7 +138,8 @@
             document.getElementById('expiryDate').innerText = students[id].expiry;
             document.getElementById('userPhoto').src = students[id].photo;
         } else {
-            document.body.innerHTML = "<h1 style='text-align:center; margin-top:100px;'>Invalid ID! Please check the link.</h1>";
+            // যদি আইডি না পায়
+            document.body.innerHTML = "<h1 style='text-align:center; padding-top:100px;'>আইডি ভুল! লিঙ্ক চেক করুন।</h1>";
         }
     </script>
 </body>
