@@ -3,175 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certification Verification - Knowledge Drag</title>
+    <title>Verification System</title>
     <style>
-        /* CSS অংশ: নমুনার মতো ডিজাইনের জন্য */
         * { box-sizing: border-box; }
-        body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%; 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            background: #f0f3f6; overflow: hidden;
-        }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Arial', sans-serif; overflow: hidden; }
 
-        /* ওপরের ব্যাকগ্রাউন্ড অংশ */
-        .top-section {
+        /* ব্যাকগ্রাউন্ড অংশ */
+        .main-container {
             background: url('background.jpg') no-repeat center center;
             background-size: cover;
-            height: 82vh; /* স্ক্রিনের ৮২% জায়গা */
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
 
-        /* নমুনার মতো সার্টিফিকেট কার্ড */
+        /* নমুনার মতো হুবহু কার্ড */
         .cert-card {
             background: white;
             width: 100%;
-            max-width: 480px; /* মোবাইলের জন্য সাইজ */
-            padding: 30px;
-            border-radius: 4px;
-            border-top: 8px solid #005a87; /* ওপরের নীল বর্ডার */
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            max-width: 450px;
+            border-radius: 5px;
+            border-top: 10px solid #005a87;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            padding: 20px;
             text-align: center;
-            position: relative;
         }
 
-        .cert-header { 
-            display: flex; align-items: center; gap: 15px; 
-            border-bottom: 1px solid #e0e6ed; padding-bottom: 15px; margin-bottom: 20px; 
-            text-align: left;
-        }
-        .cert-header img { width: 50px; }
-        .header-text h3 { margin: 0; color: #005a87; font-size: 18px; font-weight: 700; }
-        .header-text p { margin: 2px 0 0; font-size: 12px; color: #7f8c8d; }
+        .header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; text-align: left; }
+        .header img { width: 45px; }
+        .header-text h3 { margin: 0; color: #005a87; font-size: 16px; }
+        .header-text p { margin: 0; font-size: 10px; color: #777; }
 
-        .cert-title { 
-            color: #005a87; font-size: 20px; text-transform: uppercase; 
-            margin: 0 0 20px; font-weight: 700; letter-spacing: 1px;
-        }
+        .title { color: #005a87; font-size: 18px; text-transform: uppercase; margin: 10px 0; font-weight: bold; }
 
-        .cert-body { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .user-photo img { 
-            width: 130px; height: 160px; 
-            border: 2px solid #005a87; 
-            object-fit: cover; border-radius: 4px; 
-        }
+        .photo-area img { width: 110px; height: 130px; border: 2px solid #005a87; object-fit: cover; margin-bottom: 15px; }
 
-        .info-table { width: 100%; text-align: left; margin-bottom: 20px; }
-        .info-table p { 
-            margin: 8px 0; font-size: 14px; color: #333; 
-            border-bottom: 1px solid #f0f3f6; padding-bottom: 4px; 
-            display: flex; justify-content: space-between;
-        }
-        .info-table p strong { color: #555; font-weight: 600; width: 40%; }
-        .info-table p span { color: #000; font-weight: 500; width: 60%; text-align: right; }
+        .info-grid { text-align: left; margin-bottom: 15px; }
+        .info-grid p { margin: 5px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5; padding-bottom: 3px; display: flex; justify-content: space-between; }
+        .info-grid strong { color: #444; width: 40%; }
+        .info-grid span { color: #000; font-weight: bold; width: 60%; text-align: right; }
 
-        .stamp img { width: 90px; margin-top: 10px; opacity: 0.9; }
+        .stamp img { width: 80px; }
 
-        /* নিচের সাদা অংশ যেখানে লোগো দৌড়াবে */
-        .bottom-marquee {
-            height: 18vh; /* স্ক্রিনের নিচের ১৮% জায়গা */
+        /* লোগো স্লাইডার (সাদা অংশ) */
+        .footer-marquee {
+            height: 20vh;
             background: white;
             display: flex;
             align-items: center;
             overflow: hidden;
-            border-top: 2px solid #e0e6ed;
+            border-top: 2px solid #ddd;
         }
 
-        .track {
-            display: flex;
-            width: calc(150px * 16);
-            animation: move 25s linear infinite;
-        }
+        .marquee-track { display: flex; width: 2000px; animation: moveLogos 20s linear infinite; }
+        .marquee-track img { width: 80px; margin: 0 30px; }
 
-        .track img { width: 100px; margin: 0 30px; height: auto; }
-
-        @keyframes move {
+        @keyframes moveLogos {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-150px * 8)); }
+            100% { transform: translateX(-1000px); }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-section">
+    <div class="main-container">
         <div class="cert-card">
-            <div class="cert-header">
-                <img src="logo.png" alt="Knowledge Drag Logo">
+            <div class="header">
+                <img src="logo.png">
                 <div class="header-text">
                     <h3>Knowledge Drag</h3>
                     <p>Safety and Industrial Trainings</p>
                 </div>
             </div>
 
-            <h2 class="cert-title">Official Certificate</h2>
+            <h2 class="title">Official Certificate</h2>
 
-            <div class="cert-body">
-                <div class="user-photo">
-                    <img id="userPhoto" src="logo.png" alt="User Photo">
-                </div>
+            <div class="photo-area">
+                <img id="userPhoto" src="logo.png">
+            </div>
 
-                <div class="info-table">
-                    <p><strong>Name:</strong> <span id="name">...</span></p>
-                    <p><strong>Enrollment No:</strong> <span id="enrollNo">...</span></p>
-                    <p><strong>Course:</strong> <span id="course">...</span></p>
-                    <p><strong>Issue Date:</strong> <span id="issueDate">...</span></p>
-                    <p><strong>Expiry Date:</strong> <span id="expiryDate">...</span></p>
-                </div>
+            <div class="info-grid">
+                <p><strong>Name:</strong> <span id="name">...</span></p>
+                <p><strong>Enrollment:</strong> <span id="enrollNo">...</span></p>
+                <p><strong>Course:</strong> <span id="course">...</span></p>
+                <p><strong>Issue Date:</strong> <span id="issueDate">...</span></p>
+                <p><strong>Expiry Date:</strong> <span id="expiryDate">...</span></p>
             </div>
 
             <div class="stamp">
-                <img src="verified.png" alt="Verified Seal">
+                <img src="verified.png">
             </div>
         </div>
     </div>
 
-    <div class="bottom-marquee">
-        <div class="track">
+    <div class="footer-marquee">
+        <div class="marquee-track">
             <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
             <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
             <img src="saac.png"> <img src="anci.png">
             <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
             <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
-            <img src="saac.png"> <img src="anci.png">
         </div>
     </div>
 
     <script>
-        // জাভাস্ক্রিপ্ট অংশ: তথ্য ম্যানেজ করার জন্য (আগের মতোই)
-        const students = {
-            "121086": {
-                name: "MD MAHIBULLAH",
-                iqama: "258XXXXXXX",
-                course: "SAFETY SPECIALIST / WPR",
-                issue: "13-04-2026",
-                expiry: "12-04-2027",
-                photo: "mahibullah.jpg" 
-            },
-            "258-KD-SF-26": {
-                name: "KAMRUL ISLAM",
-                iqama: "2589913066",
-                course: "SCAFFOLDING ERECTION AND DISMANTLING",
-                issue: "01-02-2026",
-                expiry: "31-01-2027",
-                photo: "kamrul.jpg"
-            }
-        };
-
+        // JSON ফাইল থেকে ডাটা পড়ার সিস্টেম
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
 
-        if (id && students[id]) {
-            document.getElementById('name').innerText = students[id].name;
-            document.getElementById('enrollNo').innerText = id;
-            document.getElementById('course').innerText = students[id].course;
-            document.getElementById('issueDate').innerText = students[id].issue;
-            document.getElementById('expiryDate').innerText = students[id].expiry;
-            document.getElementById('userPhoto').src = students[id].photo;
-        } else {
-            document.body.innerHTML = "<div style='background:url(background.jpg); height:100vh; display:flex; justify-content:center; align-items:center;'><h1 style='color:white; text-align:center;'>ID খুঁজে পাওয়া যায়নি! লিঙ্ক চেক করুন।</h1></div>";
-        }
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                if (id && data[id]) {
+                    const student = data[id];
+                    document.getElementById('name').innerText = student.name;
+                    document.getElementById('enrollNo').innerText = id;
+                    document.getElementById('course').innerText = student.course;
+                    document.getElementById('issueDate').innerText = student.issue;
+                    document.getElementById('expiryDate').innerText = student.expiry;
+                    document.getElementById('userPhoto').src = student.photo;
+                } else {
+                    document.body.innerHTML = "<h2 style='text-align:center; padding-top:50px;'>Invalid ID!</h2>";
+                }
+            })
+            .catch(err => console.error("Data load error:", err));
     </script>
 </body>
 </html>
