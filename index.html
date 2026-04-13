@@ -3,97 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Verification System</title>
+    <title>Professional Verification</title>
     <style>
-        body { margin: 0; padding: 20px 0; display: flex; justify-content: center; background: #1a1a1a; font-family: Arial, sans-serif; }
+        body { margin: 0; padding: 0; background: #f4f4f4; font-family: Arial, sans-serif; overflow-x: hidden; }
 
-        /* সার্টিফিকেটের মূল কন্টেইনার */
-        .cert-container {
+        /* সার্টিফিকেটের মূল অংশ */
+        .main-container { display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
+
+        .cert-box {
             position: relative;
-            width: 95vw; /* মোবাইলে চওড়া ঠিক রাখবে */
-            max-width: 800px;
-            aspect-ratio: 1.41 / 1; /* টেমপ্লেটের সঠিক অনুপাত */
-            background-image: url('template.png');
-            background-size: cover;
-            background-position: center;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 1.41 / 1;
+            background-image: url('template.png'); /* ব্যাকগ্রাউন্ড ছবি */
+            background-size: 100% 100%;
             background-repeat: no-repeat;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* তথ্যগুলোর পজিশন (শতকরা হিসেবে দেওয়া যাতে নড়াচড়া না করে) */
-        .info { position: absolute; font-weight: bold; color: #111; }
+        /* ডেটা পজিশনিং (শতকরা হিসেবে যাতে মোবাইল ও পিসি-তে এক থাকে) */
+        .info { position: absolute; font-weight: bold; color: #111; font-size: 1.6vw; }
 
-        /* ইউজারের ছবি */
-        #u_photo {
-            position: absolute;
-            top: 22.5%; left: 42.5%;
-            width: 15%; height: 23%;
-            object-fit: cover;
-            border: 2px solid #fff;
+        #u_photo { position: absolute; top: 21%; left: 42.5%; width: 15%; height: 23%; object-fit: cover; border: 2px solid #fff; }
+        #u_enroll { top: 48.5%; left: 0; width: 100%; text-align: center; color: #005a87; font-size: 1.4vw; }
+        #u_name { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3vw; text-transform: uppercase; }
+
+        .details { position: absolute; top: 66%; left: 8%; width: 84%; display: grid; grid-template-columns: 1fr 1fr; gap: 1vw; }
+        .row { border-bottom: 1px solid #ccc; padding: 2px 0; display: flex; justify-content: space-between; align-items: flex-end; }
+        .lbl { font-size: 1vw; color: #666; font-weight: normal; }
+        .val { font-size: 1.3vw; }
+
+        #u_name_small { top: 76.5%; left: 0; width: 100%; text-align: center; font-size: 1.5vw; }
+
+        /* লোগো স্লাইডার (ডান থেকে বামে) */
+        .slider-box { width: 100%; background: #fff; padding: 30px 0; margin-top: 50px; border-top: 1px solid #ddd; overflow: hidden; }
+        .slider-track { display: flex; width: calc(200px * 14); animation: scroll 20s linear infinite; }
+        .slider-track img { height: 50px; margin: 0 40px; filter: grayscale(100%); transition: 0.3s; }
+        .slider-track img:hover { filter: grayscale(0%); }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-200px * 7)); }
         }
 
-        #u_enroll { top: 48%; left: 0; width: 100%; text-align: center; font-size: 1.8vw; color: #005a87; }
-        #u_name { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3.5vw; color: #000; text-transform: uppercase; }
-
-        /* গ্রিড স্টাইল তথ্য (কোর্স, ইকামা ইত্যাদি) */
-        .details-grid {
-            position: absolute;
-            top: 66%; left: 8%; width: 84%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5vw;
-        }
-        .item { border-bottom: 1px solid #ddd; padding-bottom: 2px; }
-        .lbl { font-size: 1.1vw; color: #666; display: block; }
-        .val { font-size: 1.5vw; color: #222; }
-
-        #u_name_small { top: 76.8%; left: 0; width: 100%; text-align: center; font-size: 1.8vw; }
-
-        /* বড় স্ক্রিনের জন্য ফন্ট সাইজ ফিক্স করা */
-        @media (min-width: 800px) {
-            #u_enroll { font-size: 14px; }
+        /* বড় স্ক্রিনের জন্য সাইজ ফিক্স */
+        @media (min-width: 900px) {
+            .info, .val { font-size: 14px; }
             #u_name { font-size: 28px; }
-            .lbl { font-size: 9px; }
-            .val { font-size: 13px; }
-            #u_name_small { font-size: 14px; }
+            #u_enroll, #u_name_small { font-size: 13px; }
+            .lbl { font-size: 10px; }
         }
     </style>
 </head>
 <body>
 
-<div class="cert-container">
-    <img id="u_photo" src="" alt="">
-    <div id="u_enroll" class="info"></div>
-    <div id="u_name" class="info"></div>
+<div class="main-container">
+    <div class="cert-box">
+        <img id="u_photo" src="" alt="">
+        <div id="u_enroll" class="info"></div>
+        <div id="u_name" class="info"></div>
 
-    <div class="details-grid">
-        <div class="item">
-            <span class="lbl">NAME:</span>
-            <div class="val" id="disp_name">---</div>
+        <div class="details">
+            <div class="row"><span class="lbl">NAME:</span> <span class="val" id="d_name">---</span></div>
+            <div class="row"><span class="lbl">IQAMA/PASSPORT:</span> <span class="val" id="u_iqama">---</span></div>
+            <div class="row"><span class="lbl">COURSE:</span> <span class="val" id="u_course">---</span></div>
+            <div class="row"><span class="lbl">EXPIRY DATE:</span> <span class="val" id="u_expiry">---</span></div>
+            <div class="row"><span class="lbl">ISSUE DATE:</span> <span class="val" id="u_issue">---</span></div>
+            <div class="row"><span class="lbl">BRANCH:</span> <span class="val" id="u_branch">---</span></div>
         </div>
-        <div class="item" style="text-align: right;">
-            <span class="lbl">IQAMA/PASSPORT:</span>
-            <div class="val" id="u_iqama">---</div>
-        </div>
-        <div class="item">
-            <span class="lbl">COURSE:</span>
-            <div class="val" id="u_course">---</div>
-        </div>
-        <div class="item" style="text-align: right;">
-            <span class="lbl">EXPIRY DATE:</span>
-            <div class="val" id="u_expiry">---</div>
-        </div>
-        <div class="item">
-            <span class="lbl">ISSUE DATE:</span>
-            <div class="val" id="u_issue">---</div>
-        </div>
-        <div class="item" style="text-align: right;">
-            <span class="lbl">BRANCH:</span>
-            <div class="val" id="u_branch">---</div>
-        </div>
+
+        <div id="u_name_small" class="info"></div>
     </div>
-    
-    <div id="u_name_small" class="info"></div>
+</div>
+
+<div class="slider-box">
+    <div class="slider-track">
+        <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png">
+        <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png">
+    </div>
 </div>
 
 <script>
@@ -106,7 +92,7 @@
             if(id && data[id]){
                 const s = data[id];
                 document.getElementById('u_name').innerText = s.name || "";
-                document.getElementById('disp_name').innerText = s.name || "";
+                document.getElementById('d_name').innerText = s.name || "";
                 document.getElementById('u_name_small').innerText = s.name || "";
                 document.getElementById('u_enroll').innerText = "Enrollment No: " + id;
                 document.getElementById('u_course').innerText = s.course || "";
@@ -116,7 +102,7 @@
                 document.getElementById('u_branch').innerText = s.branch || "Al Jubail, KSA";
                 if(s.photo) document.getElementById('u_photo').src = s.photo;
             } else {
-                alert("Invalid ID!");
+                alert("ID not found in data.json!");
             }
         });
 </script>
