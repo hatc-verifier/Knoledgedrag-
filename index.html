@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -101,6 +101,38 @@
         @keyframes scroll {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
+        }
+
+        /* মোবাইল স্ক্রিন রিকোয়ারমেন্ট অনুযায়ী অ্যাডজাস্টমেন্ট */
+        @media only screen and (max-width: 600px) {
+            .hero-bg {
+                height: 25vh;
+            }
+            .wrapper {
+                margin-top: -80px;
+            }
+            .info-section {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 0 15px;
+            }
+            .cert-box {
+                margin-top: -50px;
+            }
+            .top-header {
+                padding: 10px;
+            }
+            .user-profile img {
+                width: 90px;
+                height: 110px;
+            }
+            .footer-desc {
+                font-size: 10px;
+                padding: 10px;
+            }
+            .logo-slider {
+                padding: 10px 0;
+            }
         }
     </style>
 </head>
