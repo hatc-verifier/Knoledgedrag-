@@ -3,134 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Certificate Verification</title>
+    <title>Official Verification - Knowledge Drag</title>
     <style>
+        /* ১. বেসিক সেটআপ ও ব্যাকগ্রাউন্ড */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            min-height: 100vh;
+            min-height: 200vh; /* স্ক্রলিং রাখার জন্য */
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* সার্টিফিকেট কার্ড স্টাইল */
-        .wrapper {
-            margin-top: 50px;
-            width: 95%;
-            max-width: 850px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            background: #fff; /* লোডিং এর সময় সাদা দেখাবে */
+        /* ২. টপ হেডার (রেফারেন্স সাইটের মত) */
+        header {
+            width: 100%;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .cert-img {
-            display: block;
+        .logo-text { color: white; font-weight: bold; font-size: 1.2rem; }
+
+        /* ৩. মেইন কন্টেইনার (সার্টিফিকেট এরিয়া) */
+        .main-content {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        /* ৪. সার্টিফিকেট সাইজ (মোবাইলে ৩০% জায়গা নিবে) */
+        .cert-display {
+            width: 90%; /* মোবাইলে দুইপাশে একটু জায়গা থাকবে */
+            max-width: 800px;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        /* আপনার শর্ত অনুযায়ী মোবাইলে হাইট কন্ট্রোল */
+        @media (max-width: 600px) {
+            .cert-display {
+                width: 85%;
+                height: 30vh; /* মোবাইলের মাত্র ৩০% জায়গা জুড়ে দেখাবে */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .cert-display img {
+                max-height: 100%;
+                width: auto;
+            }
+        }
+
+        .cert-display img {
             width: 100%;
             height: auto;
+            display: block;
         }
 
-        /* ডেটা লেয়ার - সার্টিফিকেটের ওপর তথ্য */
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-        }
-
-        .info { position: absolute; font-weight: bold; color: #1a1a1a; font-size: 1.6vw; }
-
-        /* ইউজারের প্রোফাইল পিকচার */
-        #u_photo {
-            position: absolute;
-            top: 21.5%; left: 42.6%;
-            width: 14.8%; height: 22.8%;
-            object-fit: cover;
-            border: 2px solid #fff;
-        }
-
-        #u_enroll { top: 48%; left: 0; width: 100%; text-align: center; color: #005a87; font-size: 1.4vw; }
-        #u_name_big { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3vw; text-transform: uppercase; }
-
-        /* টেবিল স্টাইল তথ্য */
-        .grid-data {
-            position: absolute;
-            top: 66%; left: 8.5%; width: 83%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            row-gap: 1.2vw;
-            column-gap: 5vw;
-        }
-
-        .field { border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 2px; }
-        .label { font-size: 0.9vw; color: #777; font-weight: normal; }
-        .value { font-size: 1.3vw; color: #000; }
-
-        #u_name_small { top: 76.8%; left: 0; width: 100%; text-align: center; font-size: 1.6vw; }
-
-        /* লোগো স্লাইডার */
-        .slider-section {
+        /* ৫. লোগো স্লাইডার (রঙিন ও এনিমেটেড) */
+        .slider-box {
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             padding: 40px 0;
-            margin-top: auto; /* পেজের নিচে থাকবে */
+            margin-top: 50px;
             overflow: hidden;
-            border-top: 5px solid #005a87;
+            border-top: 4px solid #005a87;
         }
 
         .slider-track {
             display: flex;
-            width: calc(180px * 16);
-            animation: scroll 25s linear infinite;
+            width: calc(150px * 16);
+            animation: scroll 20s linear infinite;
         }
 
         .slider-track img {
-            width: 120px;
-            height: 60px;
+            width: 100px;
+            margin: 0 30px;
             object-fit: contain;
-            margin: 0 40px;
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-180px * 8)); }
+            100% { transform: translateX(calc(-150px * 8)); }
         }
 
-        /* রেসপনসিভ ফন্ট সাইজ পিসি ইউজারদের জন্য */
-        @media (min-width: 900px) {
-            .info, .value { font-size: 14px; }
-            #u_name_big { font-size: 28px; }
-            #u_enroll, #u_name_small { font-size: 12px; }
-            .label { font-size: 9px; }
+        /* ৬. নিচের কন্টেন্ট (স্ক্রল করলে যা দেখাবে) */
+        .extra-content {
+            width: 100%;
+            max-width: 900px;
+            padding: 50px 20px;
+            color: white;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <img src="template.png" class="cert-img" alt="Template">
-        
-        <div class="overlay">
-            <img id="u_photo" src="" alt="">
-            <div id="u_enroll" class="info"></div>
-            <div id="u_name_big" class="info"></div>
+    <header>
+        <div class="logo-text">Knowledge Drag</div>
+        <div style="color:white">☰</div>
+    </header>
 
-            <div class="grid-data">
-                <div class="field"><span class="label">NAME:</span><span class="value" id="d_name"></span></div>
-                <div class="field"><span class="label">IQAMA:</span><span class="value" id="u_iqama"></span></div>
-                <div class="field"><span class="label">COURSE:</span><span class="value" id="u_course"></span></div>
-                <div class="field"><span class="label">EXPIRY:</span><span class="value" id="u_expiry"></span></div>
-                <div class="field"><span class="label">ISSUE:</span><span class="value" id="u_issue"></span></div>
-                <div class="field"><span class="label">BRANCH:</span><span class="value" id="u_branch"></span></div>
-            </div>
-
-            <div id="u_name_small" class="info"></div>
+    <div class="main-content">
+        <div class="cert-display" id="cert-container">
+            <img id="main-cert" src="" alt="Loading Certificate...">
         </div>
     </div>
 
-    <div class="slider-section">
+    <div class="slider-box">
         <div class="slider-track">
             <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
             <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png"> <img src="tavto.png">
@@ -139,52 +140,29 @@
         </div>
     </div>
 
-<script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+    <div class="extra-content">
+        <h2>Industrial Safety & Technical Training</h2>
+        <p style="margin-top:20px;">We are committed to providing the highest standard of safety training in Saudi Arabia. Our certificates are globally recognized and verified.</p>
+    </div>
 
-    // কাল্পনিক ডাটা তৈরি (যদি JSON না থাকে)
-    const dummyData = {
-        "258-KD-SF-26": {
-            "name": "KAMRUL ISLAM",
-            "iqama": "2589913066",
-            "course": "SCAFFOLDING ERECTION",
-            "issue": "01-02-2026",
-            "expiry": "31-01-2027",
-            "branch": "B2 Al Jubail, KSA",
-            "photo": "mahibullah.jpg"
+    <script>
+        // ইউআরএল থেকে আইডি বের করার ফাংশন
+        const urlParams = new URLSearchParams(window.location.search);
+        const certId = urlParams.get('id');
+        const certImg = document.getElementById('main-cert');
+
+        if (certId) {
+            // যদি আইডি থাকে, তবে সেই নামের ছবি লোড হবে (ধরে নিচ্ছি ছবিগুলো .png ফরম্যাটে)
+            certImg.src = "certificates/" + certId + ".png"; 
+        } else {
+            // আইডি না থাকলে একটি ডিফল্ট মেসেজ
+            document.getElementById('cert-container').innerHTML = "<h2 style='padding:20px'>Please provide a valid Certificate ID</h2>";
         }
-    };
 
-    // ডেটা লোড করা
-    fetch('data.json')
-        .then(res => res.json())
-        .then(data => {
-            const user = data[id] || dummyData[id];
-            if(user) {
-                document.getElementById('u_name_big').innerText = user.name;
-                document.getElementById('d_name').innerText = user.name;
-                document.getElementById('u_name_small').innerText = user.name;
-                document.getElementById('u_enroll').innerText = "Enrollment No: " + id;
-                document.getElementById('u_course').innerText = user.course;
-                document.getElementById('u_iqama').innerText = user.iqama;
-                document.getElementById('u_issue').innerText = user.issue;
-                document.getElementById('u_expiry').innerText = user.expiry;
-                document.getElementById('u_branch').innerText = user.branch;
-                document.getElementById('u_photo').src = user.photo;
-            } else {
-                alert("ID not found!");
-            }
-        }).catch(() => {
-            // যদি JSON ফাইল না পায় তবে ডামি ডাটা দেখাবে
-            const user = dummyData[id];
-            if(user) {
-                document.getElementById('u_name_big').innerText = user.name;
-                document.getElementById('d_name').innerText = user.name;
-                document.getElementById('u_photo').src = user.photo;
-                // ... বাকিগুলোও একইভাবে লোড হবে
-            }
-        });
-</script>
+        // ছবি লোড হতে ভুল হলে এরর হ্যান্ডলিং
+        certImg.onerror = function() {
+            document.getElementById('cert-container').innerHTML = "<h2 style='padding:20px; color:red;'>Certificate Not Found (ID: " + certId + ")</h2>";
+        };
+    </script>
 </body>
 </html>
