@@ -3,136 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Verification - Knowledge Drag</title>
+    <title>Verification System | Knowledge Drag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ১. বেসিক সেটআপ ও ব্যাকগ্রাউন্ড */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: url('background.jpg') no-repeat center center fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        /* ১. ব্যাকগ্রাউন্ড এরিয়া (মোবাইলের ৫৫% জুড়ে থাকবে) */
+        .hero-section {
+            width: 100%;
+            height: 55vh; /* আপনার চাহিদা অনুযায়ী ৫৫% */
+            background: url('background.jpg') no-repeat center center;
             background-size: cover;
-            min-height: 200vh; /* স্ক্রলিং রাখার জন্য */
+            position: relative;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* ২. টপ হেডার (রেফারেন্স সাইটের মত) */
-        header {
-            width: 100%;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo-text { color: white; font-weight: bold; font-size: 1.2rem; }
-
-        /* ৩. মেইন কন্টেইনার (সার্টিফিকেট এরিয়া) */
-        .main-content {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 0;
         }
 
-        /* ৪. সার্টিফিকেট সাইজ (মোবাইলে ৩০% জায়গা নিবে) */
-        .cert-display {
-            width: 90%; /* মোবাইলে দুইপাশে একটু জায়গা থাকবে */
-            max-width: 800px;
+        /* ২. সার্টিফিকেট ফ্রেম (স্থির থাকবে) */
+        .cert-container {
+            width: 90%;
+            max-width: 600px;
             background: white;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            border-radius: 4px;
+            position: relative; /* ডাউনলোড বাটনের জন্য */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 5px;
             overflow: hidden;
-            transition: 0.3s;
+            z-index: 10;
         }
 
-        /* আপনার শর্ত অনুযায়ী মোবাইলে হাইট কন্ট্রোল */
-        @media (max-width: 600px) {
-            .cert-display {
-                width: 85%;
-                height: 30vh; /* মোবাইলের মাত্র ৩০% জায়গা জুড়ে দেখাবে */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .cert-display img {
-                max-height: 100%;
-                width: auto;
-            }
-        }
-
-        .cert-display img {
+        .cert-container img {
             width: 100%;
-            height: auto;
             display: block;
         }
 
-        /* ৫. লোগো স্লাইডার (রঙিন ও এনিমেটেড) */
+        /* ৩. ডাউনলোড বাটন (ডান পাশে উপরে কোনায়) */
+        .download-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 90, 135, 0.8);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover { background: #003d5c; }
+
+        /* ৪. লোগো স্লাইডার */
         .slider-box {
             width: 100%;
             background: white;
-            padding: 40px 0;
-            margin-top: 50px;
+            padding: 20px 0;
             overflow: hidden;
-            border-top: 4px solid #005a87;
+            border-bottom: 2px solid #ddd;
         }
 
-        .slider-track {
+        .track {
             display: flex;
-            width: calc(150px * 16);
+            width: calc(120px * 16);
             animation: scroll 20s linear infinite;
         }
 
-        .slider-track img {
-            width: 100px;
-            margin: 0 30px;
+        .track img {
+            width: 80px;
+            margin: 0 20px;
             object-fit: contain;
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-150px * 8)); }
+            100% { transform: translateX(calc(-120px * 8)); }
         }
 
-        /* ৬. নিচের কন্টেন্ট (স্ক্রল করলে যা দেখাবে) */
-        .extra-content {
-            width: 100%;
-            max-width: 900px;
-            padding: 50px 20px;
+        /* ৫. নীল কালারের ইনফো সেকশন (আপনার স্ক্রিনশট অনুযায়ী) */
+        .info-footer {
+            background-color: #1a4a5a; /* স্ক্রিনশটের গাঢ় নীল রঙ */
             color: white;
+            padding: 40px 20px;
+        }
+
+        .info-footer h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid #fff;
+            padding-left: 10px;
+        }
+
+        .info-footer p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .branch-list {
+            margin-bottom: 30px;
+        }
+
+        .branch-list h3 { margin-bottom: 10px; font-size: 18px; color: #a5d6e7; }
+        .branch-list div { margin-bottom: 5px; font-size: 15px; }
+
+        .contact-info {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .contact-item i { margin-right: 10px; color: #a5d6e7; }
+
+        .copyright {
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            margin-top: 20px;
+            font-size: 12px;
+            margin-top: 30px;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-text">Knowledge Drag</div>
-        <div style="color:white">☰</div>
-    </header>
-
-    <div class="main-content">
-        <div class="cert-display" id="cert-container">
-            <img id="main-cert" src="" alt="Loading Certificate...">
+    <div class="hero-section">
+        <div class="cert-container">
+            <a href="" id="download-link" download class="download-btn">
+                <i class="fas fa-download"></i>
+            </a>
+            <img id="main-cert" src="" alt="Certificate">
         </div>
     </div>
 
     <div class="slider-box">
-        <div class="slider-track">
+        <div class="track">
             <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
             <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png"> <img src="tavto.png">
             <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
@@ -140,28 +159,50 @@
         </div>
     </div>
 
-    <div class="extra-content">
-        <h2>Industrial Safety & Technical Training</h2>
-        <p style="margin-top:20px;">We are committed to providing the highest standard of safety training in Saudi Arabia. Our certificates are globally recognized and verified.</p>
+    <div class="info-footer">
+        <div style="max-width: 600px; margin: auto;">
+            <img src="logo.png" style="width: 150px; margin-bottom: 20px;" alt="Knowledge Drag Logo">
+            
+            <p>Leadership in Occupational Safety and Certified Trainings. We provide world-class industrial education.</p>
+
+            <div class="branch-list">
+                <h3>Our Branches</h3>
+                <div>Al-Thuqbah, Khobar KSA</div>
+                <div>Al Jubail, KSA</div>
+                <div>Yanbu, KSA</div>
+                <div>Riyadh, KSA</div>
+            </div>
+
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-item"><i class="fas fa-phone"></i> +966542004373</div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
+                <div class="contact-item"><i class="fab fa-whatsapp"></i> WhatsApp Support</div>
+            </div>
+
+            <div class="copyright">
+                © 2025 Knowledge Drag all right reserved.
+            </div>
+        </div>
     </div>
 
     <script>
-        // ইউআরএল থেকে আইডি বের করার ফাংশন
+        // ইউআরএল থেকে আইডি এবং ছবি লোড
         const urlParams = new URLSearchParams(window.location.search);
         const certId = urlParams.get('id');
         const certImg = document.getElementById('main-cert');
+        const dlLink = document.getElementById('download-link');
 
         if (certId) {
-            // যদি আইডি থাকে, তবে সেই নামের ছবি লোড হবে (ধরে নিচ্ছি ছবিগুলো .png ফরম্যাটে)
-            certImg.src = "certificates/" + certId + ".png"; 
+            const imagePath = "certificates/" + certId + ".png";
+            certImg.src = imagePath;
+            dlLink.href = imagePath; // ডাউনলোড বাটনের জন্য পাথ সেট
         } else {
-            // আইডি না থাকলে একটি ডিফল্ট মেসেজ
-            document.getElementById('cert-container').innerHTML = "<h2 style='padding:20px'>Please provide a valid Certificate ID</h2>";
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>No ID Provided</h2>";
         }
 
-        // ছবি লোড হতে ভুল হলে এরর হ্যান্ডলিং
         certImg.onerror = function() {
-            document.getElementById('cert-container').innerHTML = "<h2 style='padding:20px; color:red;'>Certificate Not Found (ID: " + certId + ")</h2>";
+            document.querySelector('.cert-container').innerHTML = "<h2 style='padding:20px; color:red; text-align:center;'>Certificate Not Found</h2>";
         };
     </script>
 </body>
