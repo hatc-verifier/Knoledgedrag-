@@ -3,103 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification System</title>
+    <title>Knowledge Drag Verification</title>
     <style>
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Arial', sans-serif; overflow: hidden; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Segoe UI', Arial, sans-serif; background: #fff; }
 
-        /* ব্যাকগ্রাউন্ড অংশ */
-        .main-container {
+        /* ব্যাকগ্রাউন্ড ছবি ৩০% জায়গা নেবে */
+        .hero-bg {
             background: url('background.jpg') no-repeat center center;
             background-size: cover;
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
+            height: 30vh; /* আপনার অনুরোধ অনুযায়ী ৩০% */
+            width: 100%;
         }
 
-        /* নমুনার মতো হুবহু কার্ড */
-        .cert-card {
+        /* সার্টিফিকেট কার্ডের মূল অংশ */
+        .wrapper {
+            margin-top: -100px; /* কার্ডটিকে ছবির ওপর একটু তুলে আনা */
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .cert-box {
             background: white;
             width: 100%;
-            max-width: 450px;
-            border-radius: 5px;
-            border-top: 10px solid #005a87;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            max-width: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             padding: 20px;
             text-align: center;
         }
 
-        .header { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; text-align: left; }
-        .header img { width: 45px; }
-        .header-text h3 { margin: 0; color: #005a87; font-size: 16px; }
-        .header-text p { margin: 0; font-size: 10px; color: #777; }
+        /* নমুনার মতো হেডার */
+        .top-bar {
+            background: #005a87;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: -20px -20px 20px -20px;
+        }
+        .top-bar p { margin: 0; font-size: 10px; }
 
-        .title { color: #005a87; font-size: 18px; text-transform: uppercase; margin: 10px 0; font-weight: bold; }
+        .user-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
+        .user-header img { width: 100px; height: 120px; border: 2px solid #005a87; object-fit: cover; }
 
-        .photo-area img { width: 110px; height: 130px; border: 2px solid #005a87; object-fit: cover; margin-bottom: 15px; }
+        /* তথ্যগুলো দুই পাশে সাজানো */
+        .info-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: left;
+            font-size: 11px;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .info-container p { margin: 3px 0; border-bottom: 1px solid #f0f0f0; }
 
-        .info-grid { text-align: left; margin-bottom: 15px; }
-        .info-grid p { margin: 5px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5; padding-bottom: 3px; display: flex; justify-content: space-between; }
-        .info-grid strong { color: #444; width: 40%; }
-        .info-grid span { color: #000; font-weight: bold; width: 60%; text-align: right; }
+        /* নমুনার সেই অতিরিক্ত টেক্সট */
+        .cert-footer-text {
+            font-size: 10px;
+            color: #555;
+            margin-top: 20px;
+            line-height: 1.4;
+            padding: 0 10px;
+        }
 
-        .stamp img { width: 80px; }
+        .verified-seal { width: 60px; margin: 15px 0; }
 
-        /* লোগো স্লাইডার (সাদা অংশ) */
-        .footer-marquee {
-            height: 20vh;
+        /* লোগো স্লাইডার (নিচে সাদা অংশে) */
+        .marquee-footer {
+            height: 100px;
             background: white;
+            overflow: hidden;
             display: flex;
             align-items: center;
-            overflow: hidden;
-            border-top: 2px solid #ddd;
+            border-top: 1px solid #eee;
         }
-
-        .marquee-track { display: flex; width: 2000px; animation: moveLogos 20s linear infinite; }
-        .marquee-track img { width: 80px; margin: 0 30px; }
-
-        @keyframes moveLogos {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-1000px); }
-        }
+        .track { display: flex; width: 2000px; animation: slide 20s linear infinite; }
+        .track img { width: 70px; margin: 0 25px; }
+        @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-1000px); } }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="cert-card">
-            <div class="header">
-                <img src="logo.png">
-                <div class="header-text">
-                    <h3>Knowledge Drag</h3>
+    <div class="hero-bg"></div>
+
+    <div class="wrapper">
+        <div class="cert-box">
+            <div class="top-bar">
+                <div style="text-align:left;">
+                    <img src="logo.png" style="width:30px; filter:brightness(0) invert(1);">
+                </div>
+                <div>
+                    <strong style="font-size:14px;">Official Certificate</strong><br>
                     <p>Safety and Industrial Trainings</p>
+                </div>
+                <div style="text-align:right;">
+                    <p>شهادة رسمية</p>
                 </div>
             </div>
 
-            <h2 class="title">Official Certificate</h2>
-
-            <div class="photo-area">
+            <div class="user-header">
                 <img id="userPhoto" src="logo.png">
+                <p style="font-size:11px; margin-top:5px;">Enrollment No: <span id="enrollNo" style="font-weight:bold;">...</span></p>
             </div>
 
-            <div class="info-grid">
-                <p><strong>Name:</strong> <span id="name">...</span></p>
-                <p><strong>Enrollment:</strong> <span id="enrollNo">...</span></p>
-                <p><strong>Course:</strong> <span id="course">...</span></p>
-                <p><strong>Issue Date:</strong> <span id="issueDate">...</span></p>
-                <p><strong>Expiry Date:</strong> <span id="expiryDate">...</span></p>
+            <div class="info-container">
+                <div>
+                    <p>Name: <span id="name" style="font-weight:bold;">...</span></p>
+                    <p>Issue Date: <span id="issueDate">...</span></p>
+                    <p>Course: <span id="course" style="font-weight:bold; color:#005a87;">...</span></p>
+                    <p>Branch: <span id="branch">...</span></p>
+                </div>
+                <div>
+                    <p>Iqama/Passport: <span id="iqama">...</span></p>
+                    <p>Expiry Date: <span id="expiryDate">...</span></p>
+                </div>
             </div>
 
-            <div class="stamp">
-                <img src="verified.png">
+            <img src="verified.png" class="verified-seal">
+
+            <div class="cert-footer-text">
+                <p>We Certify that <strong><span id="name2">...</span></strong> is trained in the erection, inspection, modification, and dismantling of Tube & Coupler, Frame, Ringlock, Cuplock, Kwikstage, Haki, and Trestle scaffolding systems with strong competence in load classification, stability, bracing, access provision, and fall-protection measures in full compliance with OSHA 1910 & 1926, BS EN 12811-1, and ISO 45001:2018.</p>
+                <p style="font-size:8px; margin-top:10px;">This certificate is valid for 1 year, after that refresher training is required.</p>
             </div>
         </div>
     </div>
 
-    <div class="footer-marquee">
-        <div class="marquee-track">
+    <div class="marquee-footer">
+        <div class="track">
             <img src="iso.png"> <img src="osha.png"> <img src="saso.png">
             <img src="sabic.png"> <img src="iosh.png"> <img src="tavtc.png">
             <img src="saac.png"> <img src="anci.png">
@@ -109,26 +143,25 @@
     </div>
 
     <script>
-        // JSON ফাইল থেকে ডাটা পড়ার সিস্টেম
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
 
         fetch('data.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-                if (id && data[id]) {
-                    const student = data[id];
-                    document.getElementById('name').innerText = student.name;
+                if(id && data[id]){
+                    const s = data[id];
+                    document.getElementById('name').innerText = s.name;
+                    document.getElementById('name2').innerText = s.name;
                     document.getElementById('enrollNo').innerText = id;
-                    document.getElementById('course').innerText = student.course;
-                    document.getElementById('issueDate').innerText = student.issue;
-                    document.getElementById('expiryDate').innerText = student.expiry;
-                    document.getElementById('userPhoto').src = student.photo;
-                } else {
-                    document.body.innerHTML = "<h2 style='text-align:center; padding-top:50px;'>Invalid ID!</h2>";
+                    document.getElementById('course').innerText = s.course;
+                    document.getElementById('iqama').innerText = s.iqama;
+                    document.getElementById('issueDate').innerText = s.issue;
+                    document.getElementById('expiryDate').innerText = s.expiry;
+                    document.getElementById('branch').innerText = s.branch;
+                    document.getElementById('userPhoto').src = s.photo;
                 }
-            })
-            .catch(err => console.error("Data load error:", err));
+            });
     </script>
 </body>
 </html>
