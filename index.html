@@ -43,19 +43,41 @@
 
         .cert-container img { width: 100%; display: block; }
 
-        /* ২. ডাউনলোড বাটন - আপনার চাওয়া অনুযায়ী এটি সাদা রঙ এবং ছোট করা হয়েছে */
+                /* আপনার দেওয়া স্ক্রিনশট অনুযায়ী ডাউনলোড বাটন */
         .download-btn {
             position: absolute;
-            top: 5px; /* একদম কোণায় */
-            right: 5px; /* একদম কোণায় */
-            color: #fff; /* সাদা কালার */
+            top: 20px; /* সার্টিফিকেটের টপ থেকে ২০ পিক্সেল নিচে */
+            right: -25px; /* সার্টিফিকেটের ডান কিনারা থেকে বাইরে ভেসে থাকবে */
+            background-color: white; /* সাদা বৃত্তাকার ব্যাকগ্রাউন্ড */
+            color: #1a4a5a; /* আইকনের রঙ আপনার দেওয়া নীল */
+            width: 50px; /* বৃত্তের সাইজ */
+            height: 50px; /* বৃত্তের সাইজ */
+            border-radius: 50%; /* বৃত্তাকার করার জন্য */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            font-size: 16px; /* ছোট সাইজ */
-            z-index: 30;
-            opacity: 0.8;
+            font-size: 24px; /* আইকনের সাইজ */
+            z-index: 30; /* সার্টিফিকেটের ওপরে থাকবে */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* হালকা শ্যাডো */
             transition: 0.3s;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* সাদা রঙ যাতে ছবির ওপর দেখা যায় */
         }
+
+        /* মোবাইলের জন্য বাটনটি যাতে স্ক্রিনের বাইরে না যায় */
+        @media (max-width: 600px) {
+            .download-btn {
+                right: 10px; /* মোবাইলে কোণায় থাকবে */
+                top: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05); /* মাউস নিলে একটু বড় হবে */
+        }
+
 
         .download-btn:hover { opacity: 1; color: #fff; }
 
