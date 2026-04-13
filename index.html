@@ -9,45 +9,55 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: sans-serif; background-color: #f4f7f6; overflow-x: hidden; }
 
-        /* ১. ব্যাকগ্রাউন্ড এরিয়া - সার্টিফিকেট উপরে উঠানো হয়েছে */
+        /* ১. ব্যাকগ্রাউন্ড এরিয়া - আপনার চাওয়া অনুযায়ী সম্পূর্ণ ছবি সেট করা হয়েছে */
         .hero-section {
             width: 100%;
-            height: 60vh;
-            background: url('background.png') no-repeat center center;
-            background-size: cover;
+            height: 55vh; /* মোবাইলের ৫৫% */
+            background-color: #f4f7f6; /* ছবির পেছনের খালি অংশের রঙ */
+            
+            /* আপনার ফাইল অনুযায়ী correct background file name ব্যবহার করুন (e.g., .png or .jpeg) */
+            background-image: url('background.png'); 
+            
+            background-repeat: no-repeat;
+            background-position: center;
+            
+            /* 'contain' ব্যবহার করায় সম্পূর্ণ ছবি দেখা যাবে, কিন্তু ছবির আকৃতি অনুযায়ী পেজের ৫৫% এরিয়ার ভেতরে ওপরে/নিচে খালি জায়গা থাকতে পারে। */
+            background-size: contain; 
+
             position: relative;
             display: flex;
-            align-items: center; /* উপরে উঠানোর জন্য সেন্টার করা হলো */
+            align-items: center; 
             justify-content: center;
-            padding-bottom: 0; 
         }
 
         .cert-container {
             width: 90%;
-            max-width: 650px;
+            max-width: 600px;
             background: white;
             position: relative;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-radius: 4px;
+            overflow: hidden;
             z-index: 10;
         }
 
-        .cert-container img { width: 100%; display: block; border-radius: 4px; }
+        .cert-container img { width: 100%; display: block; }
 
-        /* ২. ডাউনলোড বাটন - শুধু ছোট অ্যারো চিহ্ন */
+        /* ২. ডাউনলোড বাটন - আপনার চাওয়া অনুযায়ী এটি সাদা রঙ এবং ছোট করা হয়েছে */
         .download-btn {
             position: absolute;
             top: 5px; /* একদম কোণায় */
             right: 5px; /* একদম কোণায় */
-            color: #333; /* বৃত্ত ছাড়া সাধারণ কালার */
+            color: #fff; /* সাদা কালার */
             text-decoration: none;
             font-size: 16px; /* ছোট সাইজ */
             z-index: 30;
-            opacity: 0.7;
+            opacity: 0.8;
             transition: 0.3s;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* সাদা রঙ যাতে ছবির ওপর দেখা যায় */
         }
 
-        .download-btn:hover { opacity: 1; color: #000; }
+        .download-btn:hover { opacity: 1; color: #fff; }
 
         /* ৩. লোগো স্লাইডার */
         .slider-box {
@@ -141,10 +151,12 @@
             certImg.src = imagePath;
             dlLink.href = imagePath;
         } else {
-            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Invalid URL</h2>";
+            // আইডি না থাকলে সার্টিফিকেটের জায়গায় এই মেসেজ দেখাবে।
+            document.querySelector('.cert-container').innerHTML = "<h2 style='text-align:center; padding: 20px;'>Please provide a valid Certificate ID</h2>";
         }
 
         certImg.onerror = function() {
+            // ছবি লোড না হলে, আপনার মেইন রিপোজিটরিতে থাকা template.png ছবিটি দেখাবে।
             this.src = "template.png"; 
             dlLink.style.display = "none";
         };
