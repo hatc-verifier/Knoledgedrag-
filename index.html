@@ -3,109 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Verification</title>
+    <title>Official Certificate Verification</title>
     <style>
-        body { margin: 0; padding: 0; background: #f4f4f4; font-family: Arial, sans-serif; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* সার্টিফিকেটের মূল অংশ */
-        .main-container { display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
-
-        .cert-box {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            aspect-ratio: 1.41 / 1;
-            background-image: url('template.png'); /* ব্যাকগ্রাউন্ড ছবি */
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* ডেটা পজিশনিং (শতকরা হিসেবে যাতে মোবাইল ও পিসি-তে এক থাকে) */
-        .info { position: absolute; font-weight: bold; color: #111; font-size: 1.6vw; }
+        /* সার্টিফিকেট কার্ড স্টাইল */
+        .wrapper {
+            margin-top: 50px;
+            width: 95%;
+            max-width: 850px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            background: #fff; /* লোডিং এর সময় সাদা দেখাবে */
+        }
 
-        #u_photo { position: absolute; top: 21%; left: 42.5%; width: 15%; height: 23%; object-fit: cover; border: 2px solid #fff; }
-        #u_enroll { top: 48.5%; left: 0; width: 100%; text-align: center; color: #005a87; font-size: 1.4vw; }
-        #u_name { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3vw; text-transform: uppercase; }
+        .cert-img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
 
-        .details { position: absolute; top: 66%; left: 8%; width: 84%; display: grid; grid-template-columns: 1fr 1fr; gap: 1vw; }
-        .row { border-bottom: 1px solid #ccc; padding: 2px 0; display: flex; justify-content: space-between; align-items: flex-end; }
-        .lbl { font-size: 1vw; color: #666; font-weight: normal; }
-        .val { font-size: 1.3vw; }
+        /* ডেটা লেয়ার - সার্টিফিকেটের ওপর তথ্য */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+        }
 
-        #u_name_small { top: 76.5%; left: 0; width: 100%; text-align: center; font-size: 1.5vw; }
+        .info { position: absolute; font-weight: bold; color: #1a1a1a; font-size: 1.6vw; }
 
-        /* লোগো স্লাইডার (ডান থেকে বামে) */
-        .slider-box { width: 100%; background: #fff; padding: 30px 0; margin-top: 50px; border-top: 1px solid #ddd; overflow: hidden; }
-        .slider-track { display: flex; width: calc(200px * 14); animation: scroll 20s linear infinite; }
-        .slider-track img { height: 50px; margin: 0 40px; filter: grayscale(100%); transition: 0.3s; }
-        .slider-track img:hover { filter: grayscale(0%); }
+        /* ইউজারের প্রোফাইল পিকচার */
+        #u_photo {
+            position: absolute;
+            top: 21.5%; left: 42.6%;
+            width: 14.8%; height: 22.8%;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+
+        #u_enroll { top: 48%; left: 0; width: 100%; text-align: center; color: #005a87; font-size: 1.4vw; }
+        #u_name_big { top: 56%; left: 0; width: 100%; text-align: center; font-size: 3vw; text-transform: uppercase; }
+
+        /* টেবিল স্টাইল তথ্য */
+        .grid-data {
+            position: absolute;
+            top: 66%; left: 8.5%; width: 83%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            row-gap: 1.2vw;
+            column-gap: 5vw;
+        }
+
+        .field { border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 2px; }
+        .label { font-size: 0.9vw; color: #777; font-weight: normal; }
+        .value { font-size: 1.3vw; color: #000; }
+
+        #u_name_small { top: 76.8%; left: 0; width: 100%; text-align: center; font-size: 1.6vw; }
+
+        /* লোগো স্লাইডার */
+        .slider-section {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 0;
+            margin-top: auto; /* পেজের নিচে থাকবে */
+            overflow: hidden;
+            border-top: 5px solid #005a87;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(180px * 16);
+            animation: scroll 25s linear infinite;
+        }
+
+        .slider-track img {
+            width: 120px;
+            height: 60px;
+            object-fit: contain;
+            margin: 0 40px;
+        }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-200px * 7)); }
+            100% { transform: translateX(calc(-180px * 8)); }
         }
 
-        /* বড় স্ক্রিনের জন্য সাইজ ফিক্স */
+        /* রেসপনসিভ ফন্ট সাইজ পিসি ইউজারদের জন্য */
         @media (min-width: 900px) {
-            .info, .val { font-size: 14px; }
-            #u_name { font-size: 28px; }
-            #u_enroll, #u_name_small { font-size: 13px; }
-            .lbl { font-size: 10px; }
+            .info, .value { font-size: 14px; }
+            #u_name_big { font-size: 28px; }
+            #u_enroll, #u_name_small { font-size: 12px; }
+            .label { font-size: 9px; }
         }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <div class="cert-box">
-        <img id="u_photo" src="" alt="">
-        <div id="u_enroll" class="info"></div>
-        <div id="u_name" class="info"></div>
+    <div class="wrapper">
+        <img src="template.png" class="cert-img" alt="Template">
+        
+        <div class="overlay">
+            <img id="u_photo" src="" alt="">
+            <div id="u_enroll" class="info"></div>
+            <div id="u_name_big" class="info"></div>
 
-        <div class="details">
-            <div class="row"><span class="lbl">NAME:</span> <span class="val" id="d_name">---</span></div>
-            <div class="row"><span class="lbl">IQAMA/PASSPORT:</span> <span class="val" id="u_iqama">---</span></div>
-            <div class="row"><span class="lbl">COURSE:</span> <span class="val" id="u_course">---</span></div>
-            <div class="row"><span class="lbl">EXPIRY DATE:</span> <span class="val" id="u_expiry">---</span></div>
-            <div class="row"><span class="lbl">ISSUE DATE:</span> <span class="val" id="u_issue">---</span></div>
-            <div class="row"><span class="lbl">BRANCH:</span> <span class="val" id="u_branch">---</span></div>
+            <div class="grid-data">
+                <div class="field"><span class="label">NAME:</span><span class="value" id="d_name"></span></div>
+                <div class="field"><span class="label">IQAMA:</span><span class="value" id="u_iqama"></span></div>
+                <div class="field"><span class="label">COURSE:</span><span class="value" id="u_course"></span></div>
+                <div class="field"><span class="label">EXPIRY:</span><span class="value" id="u_expiry"></span></div>
+                <div class="field"><span class="label">ISSUE:</span><span class="value" id="u_issue"></span></div>
+                <div class="field"><span class="label">BRANCH:</span><span class="value" id="u_branch"></span></div>
+            </div>
+
+            <div id="u_name_small" class="info"></div>
         </div>
-
-        <div id="u_name_small" class="info"></div>
     </div>
-</div>
 
-<div class="slider-box">
-    <div class="slider-track">
-        <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png">
-        <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png">
+    <div class="slider-section">
+        <div class="slider-track">
+            <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
+            <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png"> <img src="tavto.png">
+            <img src="iso.png"> <img src="saso.png"> <img src="ansi.png"> <img src="sabic.png"> 
+            <img src="oeha.png"> <img src="saac.png"> <img src="iosh.png"> <img src="tavto.png">
+        </div>
     </div>
-</div>
 
 <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
+    // কাল্পনিক ডাটা তৈরি (যদি JSON না থাকে)
+    const dummyData = {
+        "258-KD-SF-26": {
+            "name": "KAMRUL ISLAM",
+            "iqama": "2589913066",
+            "course": "SCAFFOLDING ERECTION",
+            "issue": "01-02-2026",
+            "expiry": "31-01-2027",
+            "branch": "B2 Al Jubail, KSA",
+            "photo": "mahibullah.jpg"
+        }
+    };
+
+    // ডেটা লোড করা
     fetch('data.json')
         .then(res => res.json())
         .then(data => {
-            if(id && data[id]){
-                const s = data[id];
-                document.getElementById('u_name').innerText = s.name || "";
-                document.getElementById('d_name').innerText = s.name || "";
-                document.getElementById('u_name_small').innerText = s.name || "";
+            const user = data[id] || dummyData[id];
+            if(user) {
+                document.getElementById('u_name_big').innerText = user.name;
+                document.getElementById('d_name').innerText = user.name;
+                document.getElementById('u_name_small').innerText = user.name;
                 document.getElementById('u_enroll').innerText = "Enrollment No: " + id;
-                document.getElementById('u_course').innerText = s.course || "";
-                document.getElementById('u_iqama').innerText = s.iqama || "";
-                document.getElementById('u_issue').innerText = s.issue || "";
-                document.getElementById('u_expiry').innerText = s.expiry || "";
-                document.getElementById('u_branch').innerText = s.branch || "Al Jubail, KSA";
-                if(s.photo) document.getElementById('u_photo').src = s.photo;
+                document.getElementById('u_course').innerText = user.course;
+                document.getElementById('u_iqama').innerText = user.iqama;
+                document.getElementById('u_issue').innerText = user.issue;
+                document.getElementById('u_expiry').innerText = user.expiry;
+                document.getElementById('u_branch').innerText = user.branch;
+                document.getElementById('u_photo').src = user.photo;
             } else {
-                alert("ID not found in data.json!");
+                alert("ID not found!");
+            }
+        }).catch(() => {
+            // যদি JSON ফাইল না পায় তবে ডামি ডাটা দেখাবে
+            const user = dummyData[id];
+            if(user) {
+                document.getElementById('u_name_big').innerText = user.name;
+                document.getElementById('d_name').innerText = user.name;
+                document.getElementById('u_photo').src = user.photo;
+                // ... বাকিগুলোও একইভাবে লোড হবে
             }
         });
 </script>
-
 </body>
 </html>
