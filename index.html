@@ -74,7 +74,7 @@
         .slider-box {
             width: 100%;
             background: white;
-            padding: 70px 0; /* সাদা অংশ বড় করা হলো */
+            padding: 120px 0; /* সাদা অংশ বড় করা হলো */
             overflow: hidden;
             border-bottom: 2px solid #ddd;
             margin-top: 10px;
@@ -82,20 +82,20 @@
 
         .track {
             display: flex;
-            width: calc(220px * 16); 
-            animation: scroll 25s linear infinite;
+            width: calc(300px * 24); 
+            animation: scroll 50s linear infinite;
         }
 
         .track img { 
-            width: 150px; /* লোগোর সাইজ বড় করা হয়েছে */
-            height: 90px;
-            margin: 0 50px; 
+            width: 180px; /* লোগোর সাইজ বড় করা হয়েছে */
+            height: 110px;
+            margin: 0 70px; 
             object-fit: contain; 
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-220px * 110)); } /* স্মুথ লুপের জন্য */
+            100% { transform: translateX(calc(-300px * 8)); } /* স্মুথ লুপের জন্য */
         }
 
         /* ৪. তথ্য সেকশন - নীল ফুটার */
