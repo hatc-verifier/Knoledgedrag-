@@ -100,32 +100,7 @@
 
         .download-btn:hover { opacity: 1; color: #fff; }
 
-        /* ৩. লোগো স্লাইডার */
-        .slider-box {
-            width: 100%;
-            background: white;
-            padding: 50px 0;
-            overflow: hidden;
-            border-bottom: 2px solid #ddd;
-        }
-
-        .track {
-            display: flex;
-            width: calc(180px * 16);
-            animation: scroll 25s linear infinite;
-        }
-
-        .track img { 
-            width: 120px; 
-            height: 70px;
-            margin: 0 40px; 
-            object-fit: contain; 
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-180px * 8)); }
-        }
+        
 
         /* ৪. তথ্য সেকশন */
         .info-footer { background-color: #1a4a5a; color: white; padding: 50px 20px; }
@@ -139,7 +114,35 @@
 <body>
 
     <div class="hero-section">
-        <div class="cert-container">
+         /* লোগো স্লাইডারের সাদা অংশ এবং লোগোর সাইজ বড় করা হলো */
+        .slider-box {
+            width: 100%;
+            background: white;
+            padding: 70px 0; /* সাদা অংশ আরও বড় করা হয়েছে */
+            overflow: hidden;
+            border-bottom: 2px solid #ddd;
+            margin-top: 10px;
+        }
+
+        .track {
+            display: flex;
+            /* লোগো বড় হওয়ায় ট্র্যাকের উইডথ অ্যাডজাস্ট করা হয়েছে */
+            width: calc(220px * 16); 
+            animation: scroll 25s linear infinite;
+        }
+
+        .track img { 
+            width: 150px; /* লোগোর সাইজ আরও বড় করা হয়েছে */
+            height: 90px;
+            margin: 0 50px; /* লোগোগুলোর মাঝখানের দূরত্ব */
+            object-fit: contain; 
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-220px * 8)); }
+        }
+       <div class="cert-container">
             <a href="" id="download-link" download class="download-btn">
                 <i class="fas fa-download"></i>
             </a>
