@@ -9,21 +9,15 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: sans-serif; background-color: #f4f7f6; overflow-x: hidden; }
 
-        /* ১. ব্যাকগ্রাউন্ড এরিয়া - আপনার চাওয়া অনুযায়ী সম্পূর্ণ ছবি সেট করা হয়েছে */
+        /* ১. ব্যাকগ্রাউন্ড এরিয়া - সম্পূর্ণ ছবি এবং পজিশন */
         .hero-section {
             width: 100%;
-            height: 55vh; /* মোবাইলের ৫৫% */
-            background-color: #f4f7f6; /* ছবির পেছনের খালি অংশের রঙ */
-            
-            /* আপনার ফাইল অনুযায়ী correct background file name ব্যবহার করুন (e.g., .png or .jpeg) */
-            background-image: url('background.png'); 
-            
+            height: 55vh;
+            background-color: #f4f7f6;
+            background-image: url('background.png'); /* */
             background-repeat: no-repeat;
             background-position: center;
-            
-            /* 'contain' ব্যবহার করায় সম্পূর্ণ ছবি দেখা যাবে, কিন্তু ছবির আকৃতি অনুযায়ী পেজের ৫৫% এরিয়ার ভেতরে ওপরে/নিচে খালি জায়গা থাকতে পারে। */
             background-size: contain; 
-
             position: relative;
             display: flex;
             align-items: center; 
@@ -37,88 +31,50 @@
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-radius: 4px;
-            overflow: hidden;
             z-index: 10;
         }
 
-        .cert-container img { width: 100%; display: block; }
+        .cert-container img { width: 100%; display: block; border-radius: 4px; }
 
-                    /* আপনার প্রথম স্ক্রিনশট অনুযায়ী ডাউনলোড বাটন ও মোটা অ্যারো চিহ্ন */
+        /* ২. ডাউনলোড বাটন - আপনার দেওয়া স্ক্রিনশট অনুযায়ী */
         .download-btn {
             position: absolute;
-            top: 22px; /* সার্টিফিকেটের নীল বর্ডারের ঠিক মাঝামাঝি */
-            right: 18px; /* ডানদিকের কোণা থেকে নিখুঁত দূরত্ব */
+            top: 22px; 
+            right: 18px; 
             background-color: white; 
-            color: #2c5f78; /* স্ক্রিনশটের মতো নীল রঙের অ্যারো */
-            width: 46px; 
-            height: 46px; 
+            color: #1a4a5a; 
+            width: 48px; 
+            height: 48px; 
             border-radius: 50%; 
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             z-index: 100; 
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: 0.3s;
         }
 
-        /* অ্যারো চিহ্নটিকে মোটা এবং আপনার দেওয়া ছবির মতো করার জন্য */
         .download-btn i {
             font-size: 22px; 
-            font-weight: 900; /* অ্যারোটি মোটা দেখানোর জন্য */
+            font-weight: 900; /* মোটা অ্যারো চিহ্ন */
         }
 
-        /* মোবাইলের জন্য পজিশন */
         @media (max-width: 600px) {
             .download-btn {
                 top: 12px; 
-                right: 8px; 
+                right: 10px; 
                 width: 40px;
                 height: 40px;
             }
-            .download-btn i {
-                font-size: 18px;
-            }
+            .download-btn i { font-size: 18px; }
         }
 
-
-        /* মোবাইলের জন্য বাটনটি যাতে স্ক্রিনের বাইরে না যায় */
-        @media (max-width: 600px) {
-            .download-btn {
-                right: 10px; /* মোবাইলে কোণায় থাকবে */
-                top: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05); /* মাউস নিলে একটু বড় হবে */
-        }
-
-
-        .download-btn:hover { opacity: 1; color: #fff; }
-
-        
-
-        /* ৪. তথ্য সেকশন */
-        .info-footer { background-color: #1a4a5a; color: white; padding: 50px 20px; }
-        .footer-content { max-width: 800px; margin: auto; }
-        .branch-list h3, .contact-info h3 { color: #a5d6e7; margin-bottom: 15px; font-size: 20px; }
-        .item { margin-bottom: 10px; font-size: 16px; opacity: 0.9; display: flex; align-items: center; }
-        .item i { margin-right: 12px; }
-        .copyright { text-align: center; font-size: 13px; margin-top: 40px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-    </style>
-</head>
-<body>
-
-    <div class="hero-section">
-         /* লোগো স্লাইডারের সাদা অংশ এবং লোগোর সাইজ বড় করা হলো */
+        /* ৩. লোগো স্লাইডার - বড় সাইজ এবং বেশি সাদা অংশ */
         .slider-box {
             width: 100%;
             background: white;
-            padding: 70px 0; /* সাদা অংশ আরও বড় করা হয়েছে */
+            padding: 70px 0; /* সাদা অংশ বড় করা হলো */
             overflow: hidden;
             border-bottom: 2px solid #ddd;
             margin-top: 10px;
@@ -126,25 +82,37 @@
 
         .track {
             display: flex;
-            /* লোগো বড় হওয়ায় ট্র্যাকের উইডথ অ্যাডজাস্ট করা হয়েছে */
             width: calc(220px * 16); 
             animation: scroll 25s linear infinite;
         }
 
         .track img { 
-            width: 150px; /* লোগোর সাইজ আরও বড় করা হয়েছে */
+            width: 150px; /* লোগোর সাইজ বড় করা হয়েছে */
             height: 90px;
-            margin: 0 50px; /* লোগোগুলোর মাঝখানের দূরত্ব */
+            margin: 0 50px; 
             object-fit: contain; 
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-220px * 8)); }
+            100% { transform: translateX(calc(-220px * 110)); } /* স্মুথ লুপের জন্য */
         }
-       <div class="cert-container">
+
+        /* ৪. তথ্য সেকশন - নীল ফুটার */
+        .info-footer { background-color: #1a4a5a; color: white; padding: 50px 20px; }
+        .footer-content { max-width: 800px; margin: auto; }
+        .branch-list h3, .contact-info h3 { color: #a5d6e7; margin-bottom: 15px; font-size: 20px; }
+        .item { margin-bottom: 10px; font-size: 16px; opacity: 0.9; display: flex; align-items: center; }
+        .item i { margin-right: 12px; width: 20px; text-align: center; }
+        .copyright { text-align: center; font-size: 13px; margin-top: 40px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <div class="cert-container">
             <a href="" id="download-link" download class="download-btn">
-                <i class="fas fa-download"></i>
+                <i class="fas fa-arrow-down"></i>
             </a>
             <img id="main-cert" src="" alt="Certificate">
         </div>
@@ -177,9 +145,9 @@
                     <h3>Get in Touch</h3>
                     <div class="item"><i class="fas fa-phone-alt"></i> +966542004373</div>
                     <div class="item"><i class="fas fa-envelope"></i> info@knowledgedrag.sa</div>
+                    <div class="item"><i class="fab fa-whatsapp"></i> WhatsApp Support</div>
                 </div>
             </div>
-            
             <div class="copyright">© 2025 Knowledge Drag. All rights reserved.</div>
         </div>
     </div>
@@ -191,17 +159,16 @@
         const dlLink = document.getElementById('download-link');
 
         if (certId) {
+            // আপনার certificates ফোল্ডার থেকে ছবি লোড করবে
             const imagePath = "certificates/" + certId + ".png";
             certImg.src = imagePath;
             dlLink.href = imagePath;
         } else {
-            // আইডি না থাকলে সার্টিফিকেটের জায়গায় এই মেসেজ দেখাবে।
             document.querySelector('.cert-container').innerHTML = "<h2 style='text-align:center; padding: 20px;'>Please provide a valid Certificate ID</h2>";
         }
 
         certImg.onerror = function() {
-            // ছবি লোড না হলে, আপনার মেইন রিপোজিটরিতে থাকা template.png ছবিটি দেখাবে।
-            this.src = "template.png"; 
+            this.src = "template.png"; /* ছবি না থাকলে টেম্পলেট দেখাবে */
             dlLink.style.display = "none";
         };
     </script>
